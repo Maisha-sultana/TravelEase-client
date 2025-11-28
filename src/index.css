@@ -1,1 +1,131 @@
 @import "tailwindcss";
+
+/* ====================================
+   1. GLOBAL RESETS
+==================================== */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #f4f4f9; /* Light background for the body */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure the main root element (e.g., #root or div) spans full height */
+#root {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ====================================
+   2. NAVBAR STYLES (.navbar, .logo, etc.)
+==================================== */
+.navbar {
+    background-color: #333; /* Dark background */
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.navbar-logo {
+    color: #F97316; /* Orange color for visibility (TravelEase) */
+    text-decoration: none;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-item {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    font-size: 1.05em;
+    transition: color 0.2s, opacity 0.2s;
+}
+
+.nav-item:hover {
+    color: #F97316; /* Hover effect */
+    opacity: 0.9;
+}
+
+.login-btn {
+    background-color: #F97316; /* Blue button color */
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background-color 0.2s;
+    display: inline-block; /* Essential for Link component to take padding */
+}
+
+.login-btn:hover {
+    background-color: #e5c539;
+}
+
+
+.footer {
+    background-color: #222;
+    color: #ccc;
+    padding: 30px 0;
+    text-align: center;
+    margin-top: auto; /* Pushes the footer to the bottom */
+    border-top: 1px solid #444;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.copyright-text {
+    margin-bottom: 15px;
+    font-size: 0.9em;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icon {
+    color: #ccc;
+    transition: color 0.2s;
+}
+
+.social-icon:hover {
+    color: #F97316; /* Matches logo highlight */
+}
+
+.nav-item-with-icon {
+    display: flex; /* Makes the icon and text align horizontally */
+    align-items: center; /* Vertically centers the icon and text */
+}
+
+.login-btn-with-icon {
+    display: flex;
+    align-items: center;
+}
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
