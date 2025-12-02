@@ -24,6 +24,22 @@ body {
 }
 
 /* ====================================
+   CSS Keyframes for Continuous Animation (Float)
+==================================== */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px); /* 15px উপরে উঠবে */
+    }
+}
+
+.float-animation {
+    animation: float 4s ease-in-out infinite; /* 4 সেকেন্ড ধরে স্মুথলি চলবে */
+}
+
+/* ====================================
    2. NAVBAR AND FOOTER STYLES
 ==================================== */
 .navbar {
@@ -430,8 +446,12 @@ body {
 .info-box p {
     color: #666;
 }
+
+/* ====================================
+   5. LATEST VEHICLES SECTION STYLES
+==================================== */
 .latest-vehicles-section {
-    padding: 60px 20px;
+    padding: 40px 20px;
     background-color: #fcfcfc; /* Light background for contrast */
 }
 
@@ -440,8 +460,8 @@ body {
     font-weight: 700;
     color: #333;
     text-align: center;
-    margin-bottom: 40px;
-    padding-top: 10px;
+    margin-bottom: 30px;
+   
 }
 
 .loading-text {
@@ -530,6 +550,10 @@ body {
 .card-btn:hover {
     background-color: #F97316;
 }
+
+/* ====================================
+   6. ADD VEHICLE FORM STYLES
+==================================== */
 .add-vehicle-container {
     max-width: 600px;
     margin: 40px auto;
@@ -649,4 +673,218 @@ body {
 .status-message.info {
     background-color: #DBEAFE; /* Blue */
     color: #1E40AF;
+}
+
+/* ====================================
+   7. TOP CATEGORIES SECTION STYLES
+==================================== */
+.categories-section {
+    padding: 40px 20px;
+    background-color: #ffffff; 
+    text-align: center;
+}
+
+.categories-grid {
+    max-width: 1200px;
+    margin: 40px auto 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.category-card {
+    text-decoration: none;
+    padding: 30px;
+    border-radius: 12px;
+    background-color: #fae6d7;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, background-color 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.category-card:hover {
+    transform: translateY(-8px);
+    background-color: #F97316; /* Orange hover effect */
+    color: white;
+}
+
+.category-icon {
+    font-size: 3.5em;
+    color: #F97316;
+    margin-bottom: 15px;
+    transition: color 0.3s;
+}
+
+.category-card:hover .category-icon {
+    color: white;
+}
+
+.category-name {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.category-card:hover .category-name {
+    color: white;
+}
+
+
+/* ====================================
+   8. ABOUT SECTION STYLES
+==================================== */
+.about-section {
+    padding: 80px 20px;
+    background-color: #333; /* Dark background for contrast */
+    color: white;
+}
+
+.about-content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+
+.about-text-content {
+    flex: 2;
+}
+
+.about-title {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.about-description {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #ccc;
+}
+
+.about-link-btn {
+    background-color: #F97316; 
+    color: white;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.about-link-btn:hover {
+    background-color: #e5c539;
+}
+
+.about-visual {
+    flex: 1;
+    text-align: center;
+}
+
+.globe-icon {
+    font-size: 8em; 
+    color: #F97316;
+    opacity: 0.8;
+}
+
+/* ====================================
+   9. FEATURED OWNER SECTION STYLES (UPDATED)
+==================================== */
+.featured-owner-section {
+    padding: 40px 20px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.owner-card-container {
+    max-width: 400px;
+    margin: 40px auto 0;
+}
+
+.owner-card {
+    padding: 35px 30px; /* Increased padding */
+    background: linear-gradient(145deg, #f9f9f9, #fcdbb5); /* Slight gradient */
+    border-radius: 20px; /* More rounded */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.4s ease-in-out;
+}
+
+.owner-card:hover {
+    transform: scale(1.03) translateY(-5px); /* Lift and grow on hover */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.owner-photo {
+    width: 130px; /* Larger photo */
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 6px solid #F97316; /* Thicker border */
+    box-shadow: 0 0 0 8px rgba(249, 115, 22, 0.2); /* Stronger outer shadow */
+}
+
+.owner-name {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #F97316; /* Highlight name with brand color */
+    margin-bottom: 5px;
+}
+
+.owner-rating {
+    color: gold; 
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.owner-rating svg {
+    margin-right: 2px;
+    color: #FFD700; /* Gold */
+}
+
+.owner-bio {
+    color: #666;
+    font-size: 1em;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.owner-joined {
+    color: #888;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+}
+
+.owner-profile-btn {
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 1em;
+    transition: background-color 0.3s, border-color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    border: 2px solid #333;
+}
+
+.owner-profile-btn:hover {
+    background-color: #F97316;
+    border-color: #F97316;
 }
