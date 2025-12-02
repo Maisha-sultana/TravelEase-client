@@ -129,3 +129,229 @@ body {
     flex-grow: 1;
     padding: 20px;
 }
+/* ... (Existing styles like .main-content, etc.) ... */
+
+/* --- LOGIN PAGE STYLES --- */
+.login-page-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-title {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 1.8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.google-sign-in-btn {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: white;
+    background-color: #DB4437; /* Google Red */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.google-sign-in-btn:hover {
+    background-color: #c33a2c;
+}
+
+.login-instruction {
+    color: #666;
+    margin-bottom: 20px;
+}
+/* src/index.css */
+/* ... (Your existing styles) ... */
+
+/* --- NEW/UPDATED AUTH STYLES --- */
+
+/* 1. Main container for the photo and dropdown */
+.user-profile-menu {
+    position: relative; /* ড্রপডাউন পজিশনিংয়ের জন্য জরুরি */
+    display: inline-block; 
+}
+
+/* 2. User photo style */
+/* src/index.css */
+
+/* 1. Ensure the icon inherits the size from its wrapper if photoURL is missing */
+.user-photo-wrapper {
+    /* এটি নিশ্চিত করুন যে এর height/width 36px আছে */
+    width: 36px; 
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* আইকনটি মাঝখানে আনতে */
+    cursor: pointer;
+    border: 2px solid #F97316; /* Orange border */
+    border-radius: 50%; /* গোল করা */
+}
+
+/* 2. User photo (when available) */
+.user-photo {
+    width: 100%; /* wrapper এর সমান */
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    /* বর্ডারটি এখানে থাকার কথা, কিন্তু wrapper এ সেট করা ভালো */
+}
+
+/* 3. User icon (when photoURL is null) */
+.user-icon {
+    /* FaUserCircle এর রং Orange করুন */
+    color: #F97316; 
+    /* এখানে সরাসরি সাইজ সেট করলে wrapper এর সাইজ ওভাররাইড হবে */
+    font-size: 32px; /* অথবা সরাসরি 36px এর কাছাকাছি সাইজ দিন */
+}
+
+/* 3. Dropdown Menu styles (default: hidden) */
+.dropdown-content {
+    display: none; /* ডিফল্টভাবে লুকানো */
+    position: absolute;
+    right: 0; /* ফটোর ডানদিকে অ্যালাইন করবে */
+    top: 100%; /* ফটোর নিচে পজিশন করবে */
+    min-width: 150px;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 10; /* নিশ্চিত করে যেন এটি অন্য উপাদানের উপরে থাকে */
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px; /* ফটো থেকে ড্রপডাউন পর্যন্ত দূরত্ব */
+    flex-direction: column; 
+    gap: 8px;
+    border: 1px solid #ccc;
+}
+
+/* 4. Show dropdown on hover over the entire container */
+.user-profile-menu:hover .dropdown-content {
+    display: flex; /* হোভার করলে মেনুটি দেখাবে */
+}
+
+/* 5. Style for the name inside the dropdown */
+.user-display-name {
+    color: #333;
+    font-size: 0.9em;
+    font-weight: 500;
+    padding: 5px 0;
+    text-align: center;
+    border-bottom: 1px solid #eee; /* নামের নিচে একটি হালকা লাইন */
+}
+
+/* 6. Style for the Logout Button inside the dropdown */
+.logout-btn-dropdown {
+    background-color: #EF4444; 
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.logout-btn-dropdown:hover {
+    background-color: #DC2626;
+}
+
+/* If you haven't added these two before, add them now: */
+.auth-buttons {
+    display: flex;
+    gap: 10px; /* Space between Login and Register */
+}
+
+.register-btn {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background-color 0.2s;
+    display: inline-block;
+}
+
+.register-btn:hover {
+    background-color: #555;
+}
+.hero-section-container {
+    height: 85vh; /* স্ক্রিনের উচ্চতার 85% */
+    width: 100%;
+    background-image: url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1769&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* একটি ডেমো ছবি ব্যবহার করা হলো */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center; /* উল্লম্বভাবে মাঝখানে */
+    justify-content: center; /* আনুভূমিকভাবে মাঝখানে */
+    color: white; /* টেক্সটের রং সাদা */
+    position: relative;
+    text-align: center;
+}
+
+.hero-background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4); /* টেক্সটকে হাইলাইট করতে একটি ডার্ক ওভারলে */
+    z-index: 1; /* কন্টেন্টের নিচে রাখতে হবে */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2; /* ওভারলের উপরে রাখতে হবে */
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero-title {
+    font-size: 3.5em;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero-subtitle {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    font-weight: 300;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.hero-btn {
+    background-color: #F97316; /* Navbar-এর কমলা রং */
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1em;
+    transition: background-color 0.3s, transform 0.1s;
+    display: inline-flex;
+    align-items: center;
+}
+
+.hero-btn:hover {
+    background-color: #e5c539;
+    transform: translateY(-2px);
+}
