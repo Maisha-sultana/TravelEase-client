@@ -7,11 +7,12 @@ import LoginPage from './components/LoginPage';
 // 💥 FIX 1: Import the AuthProvider
 import AuthProvider from './context/AuthContext'; 
 import Home from './components/Home';
+import AddVehicle from './components/AddVehicle';
 
 // Dummy components (add these if they were missing)
 
 const Vehicles = () => <h2 style={{ padding: '20px' }}>🚗 All Vehicles</h2>;
-const AddVehicle = () => <h2 style={{ padding: '20px' }}>➕ Add Vehicle</h2>;
+
 const MyVehicles = () => <h2 style={{ padding: '20px' }}>🔑 My Vehicles (Protected)</h2>;
 const MyBookings = () => <h2 style={{ padding: '20px' }}>🗓️ My Bookings (Protected)</h2>;
 const Login = () => <h2 style={{ padding: '20px' }}>🚪 Login Page</h2>;

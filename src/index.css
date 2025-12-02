@@ -530,3 +530,123 @@ body {
 .card-btn:hover {
     background-color: #F97316;
 }
+.add-vehicle-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.add-vehicle-title {
+    color: #F97316;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-vehicle-form input[type="text"],
+.add-vehicle-form input[type="number"],
+.add-vehicle-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+.add-vehicle-form textarea {
+    resize: vertical;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-row input {
+    flex: 1;
+    margin-bottom: 0; 
+}
+
+/* File Upload Custom Style */
+.file-input-wrapper {
+    margin-bottom: 15px;
+}
+
+.file-label {
+    display: block;
+    padding: 12px;
+    background-color: #f4f4f9;
+    color: #333;
+    border: 2px dashed #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+.file-label:hover {
+    background-color: #e6e6f0;
+}
+
+.file-input-wrapper input[type="file"] {
+    display: none; /* আসল ইনপুট লুকিয়ে রাখা */
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #F97316;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background-color: #e5c539;
+}
+
+.submit-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Status Message */
+.status-message {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.status-message.success {
+    background-color: #D1FAE5; /* Green */
+    color: #065F46;
+}
+
+.status-message.error {
+    background-color: #FEE2E2; /* Red */
+    color: #991B1B;
+}
+
+.status-message.info {
+    background-color: #DBEAFE; /* Blue */
+    color: #1E40AF;
+}
