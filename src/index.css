@@ -290,6 +290,41 @@ body {
     color: #666;
     margin-bottom: 20px;
 }
+.password-feedback {
+    list-style: none; /* Remove default list style */
+    padding: 0;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.password-feedback li {
+    font-size: 0.85em;
+    padding: 3px 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Invalid state (for failing the regex) */
+.password-feedback li.invalid {
+    color: #EF4444; /* Tailwind Red 500 */
+}
+
+.password-feedback li.invalid::before {
+    content: '✖'; 
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+/* Valid state (for passing the regex) */
+.password-feedback li.valid {
+    color: #10B981; /* Tailwind Green 500 */
+}
+
+.password-feedback li.valid::before {
+    content: '✔'; 
+    margin-right: 8px;
+    font-weight: bold;
+}
 /* src/index.css */
 /* ... (Your existing styles) ... */
 

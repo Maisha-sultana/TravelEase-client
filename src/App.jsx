@@ -8,6 +8,7 @@ import LoginPage from './components/LoginPage';
 import AuthProvider from './context/AuthContext'; 
 import Home from './components/Home';
 import AddVehicle from './components/AddVehicle';
+import RegisterPage from './components/RegisterPage';
 
 // Dummy components (add these if they were missing)
 
@@ -15,8 +16,6 @@ const Vehicles = () => <h2 style={{ padding: '20px' }}>🚗 All Vehicles</h2>;
 
 const MyVehicles = () => <h2 style={{ padding: '20px' }}>🔑 My Vehicles (Protected)</h2>;
 const MyBookings = () => <h2 style={{ padding: '20px' }}>🗓️ My Bookings (Protected)</h2>;
-const Login = () => <h2 style={{ padding: '20px' }}>🚪 Login Page</h2>;
-const Register = () => <h2 style={{ padding: '20px' }}>📝 Register Page</h2>;
 const NotFound = () => <h2 style={{ padding: '20px', color: 'red' }}>404 - Page Not Found</h2>;
 
 
@@ -36,7 +35,7 @@ const App = () => {
               <Route path="/my-vehicle" element={<MyVehicles />} />
               <Route path="/my-booking" element={<MyBookings />} />
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<Register />} />
+              <Route path="/register" element={<RegisterPage />} />
               <Route path="*" element={<NotFound />} /> 
             </Routes>
           </main>

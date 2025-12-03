@@ -4,7 +4,9 @@ import {
     signOut, 
     GoogleAuthProvider,  
     signInWithPopup,    
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    updateProfile
 } from 'firebase/auth';
 // FIX: Correctly import the 'auth' object from your firebase init file
 import { auth } from '../firebase/firebase.init'; 
@@ -46,6 +48,22 @@ const AuthProvider = ({ children }) => {
         // Firebase Auth function
         return signInWithEmailAndPassword(auth, email, password); 
     };
+    const registerUser = (email, password, name, photoURL) => {
+        setLoading(true);
+        // 1. Create the user
+        return createUserWithEmailAndPassword(auth, email, password)
+            .then(userCredential => {
+                // 2. Update user profile immediately after creation
+                return updateProfile(userCredential.user, {
+                    displayName: name,
+                    photoURL: photoURL
+                })
+                .then(() => {
+                    // Return the credential object
+                    return userCredential;
+                })
+            });
+    };
     // Logout Function
     const logOut = () => {
         setLoading(true); 
@@ -58,6 +76,7 @@ const AuthProvider = ({ children }) => {
         logOut,
         googleSignIn, 
         emailPasswordSignIn,
+        registerUser,
         // We also export the auth instance itself for use in other firebase operations
         auth 
     };
