@@ -168,7 +168,103 @@ body {
     align-items: center;
     justify-content: center;
 }
+.login-form input[type="email"],
+.login-form input[type="password"] {
+    flex-grow: 1; /* Take up remaining space */
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 1em;
+}
+.login-input-icon {
+    /* আইকন এবং টেক্সটের মধ্যে দূরত্ব তৈরি করা */
+    margin-right: 12px; 
+    color: #F97316; /* কমলা রং ব্যবহার করা */
+    font-size: 1.2em;
+}
+.input-group {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+}
+/* ---------------------------------- */
 
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #F97316;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submit-btn:hover {
+    background-color: #e5c539;
+}
+
+
+.google-sign-in-btn {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: white;
+    background-color: #DB4437; /* Google Red */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.google-sign-in-btn:hover {
+    background-color: #c33a2c;
+}
+
+.login-instruction {
+    color: #666;
+    margin-bottom: 20px;
+}
+.forget-password-link {
+    justify-content: flex-end; 
+    margin-bottom: 20px;
+}
+/* --- Utility for dividing social/form login --- */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ddd;
+}
+
+.divider:not(:empty)::before {
+    margin-right: .25em;
+}
+
+.divider:not(:empty)::after {
+    margin-left: .25em;
+}
 .google-sign-in-btn {
     width: 100%;
     padding: 12px 20px;
