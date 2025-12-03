@@ -9,10 +9,12 @@ import AuthProvider from './context/AuthContext';
 import Home from './components/Home';
 import AddVehicle from './components/AddVehicle';
 import RegisterPage from './components/RegisterPage';
+import VehiclesPage from './components/Vehicles';
+import PrivateRoute from './components/PrivateRoute';
+import VehicleDetails from './components/VehicleDetails';
 
 // Dummy components (add these if they were missing)
 
-const Vehicles = () => <h2 style={{ padding: '20px' }}>🚗 All Vehicles</h2>;
 
 const MyVehicles = () => <h2 style={{ padding: '20px' }}>🔑 My Vehicles (Protected)</h2>;
 const MyBookings = () => <h2 style={{ padding: '20px' }}>🗓️ My Bookings (Protected)</h2>;
@@ -30,12 +32,20 @@ const App = () => {
           <main className="main-content">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/vehicles" element={<Vehicles />} />
+              <Route path="/vehicles" element={<VehiclesPage />} />
               <Route path="/add-vehicle" element={<AddVehicle />} />
               <Route path="/my-vehicle" element={<MyVehicles />} />
               <Route path="/my-booking" element={<MyBookings />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
+              <Route 
+                path="/vehicles/:id" 
+                element={
+                  <PrivateRoute>
+                    <VehicleDetails />
+                  </PrivateRoute>
+                } 
+              />
               <Route path="*" element={<NotFound />} /> 
             </Routes>
           </main>

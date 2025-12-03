@@ -157,7 +157,7 @@ const Home = () => {
                                     
                                     {/* মূল্য */}
                                     <p className="card-price">
-                                        **Daily Rent:** ${vehicle.pricePerDay}
+                                        **Daily Rent:** Tk{vehicle.pricePerDay}
                                     </p>
                                     
                                     {/* বিস্তারিত লিংক */}
