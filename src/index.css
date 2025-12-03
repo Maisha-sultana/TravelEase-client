@@ -735,7 +735,8 @@ body {
 
 .add-vehicle-form input[type="text"],
 .add-vehicle-form input[type="number"],
-.add-vehicle-form textarea {
+.add-vehicle-form textarea,
+.add-vehicle-form .form-select{
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
@@ -743,6 +744,16 @@ body {
     border-radius: 6px;
     box-sizing: border-box;
     font-size: 1em;
+    /* Added to align text vertically and remove default browser styling */
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    appearance: none;
+    background-color: white; /* Ensure it looks like an input */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23F97316'%3E%3Cpath d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd' fill-rule='evenodd'%3E%3C/path%3E%3C/svg%3E"); /* Custom Arrow */
+    background-repeat: no-repeat;
+    background-position: right 0.7em top 50%;
+    background-size: 0.8em auto;
+    padding-right: 2.5em; /* Space for the arrow */
 }
 
 .add-vehicle-form textarea {
@@ -755,11 +766,10 @@ body {
     margin-bottom: 15px;
 }
 
-.form-row input {
+.form-row input, .form-row .form-select { /* Apply flex to both input and select */
     flex: 1;
     margin-bottom: 0; 
 }
-
 /* File Upload Custom Style */
 .file-input-wrapper {
     margin-bottom: 15px;

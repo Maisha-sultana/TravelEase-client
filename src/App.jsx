@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/navbar'; 
 import Footer from './components/footer'; 
 import LoginPage from './components/LoginPage';
-// 💥 FIX 1: Import the AuthProvider
 import AuthProvider from './context/AuthContext'; 
 import Home from './components/Home';
 import AddVehicle from './components/AddVehicle';
@@ -33,7 +32,14 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/vehicles" element={<VehiclesPage />} />
-              <Route path="/add-vehicle" element={<AddVehicle />} />
+            <Route 
+                path="/add-vehicle" 
+                element={
+                    <PrivateRoute>
+                        <AddVehicle />
+                    </PrivateRoute>
+                } 
+              />
               <Route path="/my-vehicle" element={<MyVehicles />} />
               <Route path="/my-booking" element={<MyBookings />} />
               <Route path="/login" element={<LoginPage />} />
