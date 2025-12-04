@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-// শুধুমাত্র Fa আইকনগুলো আমদানি করা হলো
 import { FaUpload, FaCar, FaPlusCircle } from 'react-icons/fa'; 
 
-// ✅ FIX: আপনার সরবরাহ করা সঠিক ImgBB API Key
+
 const IMGBB_API_KEY = "13cca8a4dab765b31c52f70f5a09a05f"; 
 const IMGBB_UPLOAD_URL = `https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`;
 
@@ -64,7 +63,7 @@ const AddVehicle = () => {
                 setStatusMessage('Image upload complete! Preparing to save data...');
                 return url;
             } else {
-                 // যদি ImgBB 400 দেয়, তবে এটি সম্ভবত Key না হয় File Format এর সমস্যা
+            
                 throw new Error(`ImgBB API Error: ${result.status_code || response.status} - ${result.error?.message || 'Unknown error'}`);
             }
 
