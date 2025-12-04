@@ -611,7 +611,7 @@ body {
    5. LATEST VEHICLES SECTION STYLES
 ==================================== */
 .latest-vehicles-section {
-    padding: 40px 20px;
+    padding: 30px 20px;
     background-color: #fcfcfc; /* Light background for contrast */
 }
 
@@ -630,6 +630,7 @@ body {
     color: #F97316;
 }
 
+/* ✅ RESTORED: Original 3-column grid structure for Home/All Vehicles pages */
 .latest-vehicles-grid {
     max-width: 1200px;
     margin: 0 auto;
@@ -1253,4 +1254,197 @@ body {
     text-align: center;
     width: 100%; 
     box-sizing: border-box; 
+}
+
+
+/* ====================================
+   10. MY VEHICLES PAGE STYLES (NEW - Horizontal Layout & Fixed Alignment)
+==================================== */
+
+/* Wrapper to constrain the status bar width and center it (Alignment Fix Confirmed) */
+.owner-status-wrapper {
+    max-width: 450px; /* Slightly wider to accommodate longer emails */
+    margin: 0 auto 30px; 
+    padding: 0 20px;
+}
+
+/* Owner Status Info (Email Banner) - Added flex for icon alignment */
+.owner-status-info {
+    display: flex; 
+    align-items: center;
+    justify-content: center; /* Center content horizontally */
+    gap: 8px; /* Space between icon and text */
+    
+    padding: 15px 20px;
+    background-color: #DBEAFE; 
+    color: #1E40AF; 
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 500;
+    text-align: center;
+    border: 1px solid #93C5FD;
+}
+
+/* ✅ NEW CLASS: Vertical Stack for My Vehicles List */
+.my-vehicles-list {
+    display: block; /* Stack horizontal cards vertically */
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* New Horizontal Card Style for My Vehicles */
+.owner-vehicle-row-card {
+    display: flex; /* Key change: make content horizontal */
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 20px; /* Space between cards */
+    overflow: hidden; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+.owner-vehicle-row-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Image Wrapper (Left Side) */
+.owner-vehicle-row-card .card-image-wrapper {
+    flex: 0 0 40%; /* 40% width, non-shrinkable */
+    max-width: 40%;
+    height: 250px; /* Fixed height for consistent image viewing */
+    overflow: hidden;
+}
+
+/* Image (Ensures it fills the space beautifully) */
+.card-image-responsive {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Important: covers the area without distortion */
+    transition: transform 0.3s ease-in-out;
+}
+
+.owner-vehicle-row-card:hover .card-image-responsive {
+    transform: scale(1.05);
+}
+
+/* Content Area (Right Side) */
+.card-content-side {
+    flex: 1; /* Takes the remaining 60% width */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes actions to the bottom */
+}
+
+/* Title Font adjustment for the smaller content area */
+.card-title-small {
+    font-size: 1.5em; 
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #1a1a1a;
+}
+
+
+/* Vehicle Card Status Badge */
+.status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Status: Available */
+.status-badge.available {
+    background-color: #D1FAE5; /* Green light */
+    color: #065F46; /* Green dark */
+}
+
+/* Status: Booked */
+.status-badge.booked {
+    background-color: #FEE2E2; /* Red light */
+    color: #991B1B; /* Red dark */
+}
+
+/* Action Buttons Row on the Card */
+.owner-actions-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    justify-content: space-between;
+}
+
+.owner-action-btn {
+    flex: 1; 
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: 4px;
+    font-size: 0.8em; /* Slightly smaller font for better fit */
+    font-weight: 600;
+    transition: background-color 0.2s, opacity 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+}
+
+/* View Button */
+.view-btn {
+    background-color: #333;
+    color: white;
+}
+.view-btn:hover {
+    background-color: #555;
+}
+
+/* Edit Button (Update) */
+.edit-btn {
+    background-color: #F97316; /* Brand Orange */
+    color: white;
+}
+.edit-btn:hover {
+    background-color: #e5c539;
+}
+
+/* Delete Button */
+.delete-btn {
+    background-color: #EF4444; /* Danger Red */
+    color: white;
+}
+.delete-btn:hover {
+    background-color: #DC2626; /* Darker Red */
+}
+
+/* --- RESPONSIVENESS FIXES (Mobile) --- */
+@media (max-width: 768px) {
+    .owner-vehicle-row-card {
+        flex-direction: column; /* Stack vertically on mobile */
+    }
+    
+    .owner-vehicle-row-card .card-image-wrapper {
+        flex: none;
+        max-width: 100%;
+        height: 200px; /* Adjust height for mobile */
+    }
+    
+    .card-content-side {
+        flex: none;
+    }
+    
+    .owner-actions-row {
+        flex-direction: column; /* Stack buttons vertically on mobile */
+    }
+
+    .owner-action-btn {
+        font-size: 0.9em;
+        padding: 10px;
+    }
 }

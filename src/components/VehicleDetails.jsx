@@ -109,7 +109,7 @@ const VehicleDetails = () => {
                     <div className="header-content">
                         <h1 className="details-title">{vehicle.vehicleName}</h1>
                         <p className="details-price">
-                            ${vehicle.pricePerDay} <span className="per-day-text">/ day</span>
+                            Tk {vehicle.pricePerDay} <span className="per-day-text">/ day</span>
                         </p>
                     </div>
                 </div>

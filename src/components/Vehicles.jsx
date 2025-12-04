@@ -24,7 +24,7 @@ const VehicleCard = ({ vehicle }) => (
             </p>
             
             <p className="card-price">
-                **Daily Rent:** Tk{vehicle.pricePerDay}
+                Daily Rent: Tk {vehicle.pricePerDay}
             </p>
             
             {/* View Details Button */}
