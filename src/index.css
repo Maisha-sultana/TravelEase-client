@@ -1595,3 +1595,101 @@ body {
     from { opacity: 0; transform: translate(-50%, -20px); }
     to { opacity: 1; transform: translate(-50%, 0); }
 }
+.my-bookings-list {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.booking-card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s;
+}
+
+.booking-card-row:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.booking-content-area {
+    flex-grow: 1;
+}
+
+.booking-title {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.booking-detail, .booking-price {
+    font-size: 0.95em;
+    color: #666;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.booking-price strong {
+    color: #F97316;
+    font-size: 1.1em;
+    margin-left: 5px;
+}
+
+/* Booking Status Badge Styles */
+.booking-status-badge {
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9em;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.booking-status-badge.pending {
+    background-color: #FFFBEB; /* Yellow Light */
+    color: #D97706; /* Yellow Dark */
+    border: 1px solid #FCD34D;
+}
+
+.booking-status-badge.confirmed {
+    background-color: #D1FAE5; /* Green Light */
+    color: #065F46; /* Green Dark */
+    border: 1px solid #6EE7B7;
+}
+
+.booking-status-badge.cancelled {
+    background-color: #FEE2E2; /* Red Light */
+    color: #991B1B; /* Red Dark */
+    border: 1px solid #FCA5A5;
+}
+
+@media (max-width: 600px) {
+    .booking-card-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .booking-status-badge {
+        margin-top: 15px;
+    }
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+}

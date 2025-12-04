@@ -13,10 +13,10 @@ import PrivateRoute from './components/PrivateRoute';
 import VehicleDetails from './components/VehicleDetails';
 import MyVehicles from './components/MyVehicles'; 
 import UpdateVehicle from './components/UpdateVehicle';
+import MyBookings from './components/MyBookings';
 
 // Dummy components (add these if they were missing)
 
-const MyBookings = () => <h2 style={{ padding: '20px' }}>🗓️ My Bookings (Protected)</h2>;
 const NotFound = () => <h2 style={{ padding: '20px', color: 'red' }}>404 - Page Not Found</h2>;
 
 
@@ -54,6 +54,14 @@ const App = () => {
                 element={
                     <PrivateRoute>
                         <UpdateVehicle /> 
+                    </PrivateRoute>
+                } 
+              />
+              <Route 
+                path="/my-booking" 
+                element={
+                    <PrivateRoute>
+                        <MyBookings /> 
                     </PrivateRoute>
                 } 
               />
