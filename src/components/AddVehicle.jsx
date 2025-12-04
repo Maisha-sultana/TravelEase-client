@@ -201,7 +201,7 @@ const AddVehicle = () => {
                     <input 
                         type="number" 
                         name="pricePerDay" 
-                        placeholder="Price per Day ($)"
+                        placeholder="Price per Day (Tk)"
                         onChange={handleChange}
                         value={vehicleData.pricePerDay || ''} 
                         required 

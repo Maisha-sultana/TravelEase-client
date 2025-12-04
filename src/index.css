@@ -1322,7 +1322,7 @@ body {
 .card-image-responsive {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Important: covers the area without distortion */
+    object-fit: contain; /* Important: covers the area without distortion */
     transition: transform 0.3s ease-in-out;
 }
 
@@ -1447,4 +1447,151 @@ body {
         font-size: 0.9em;
         padding: 10px;
     }
+}
+/* ====================================
+   11. DELETE MODAL & TOAST STYLES (NEW)
+==================================== */
+
+/* Overlay (Covers the whole screen) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it is on top of everything */
+}
+
+/* Modal Container (The actual pop-up box) */
+.modal-container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.modal-header h3 {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 0;
+}
+
+.confirm-header {
+    color: #F97316; /* Orange for warning */
+}
+
+.modal-body-text {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+.modal-btn {
+    flex: 1;
+    padding: 12px 15px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cancel-btn {
+    background-color: #ccc;
+    color: #333;
+}
+
+.cancel-btn:hover {
+    background-color: #bbb;
+}
+
+.confirm-btn {
+    background-color: #EF4444; /* Red for Delete */
+    color: white;
+}
+
+.confirm-btn:hover {
+    background-color: #DC2626;
+}
+
+/* --- Toast Notification Styles --- */
+.toast-container {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1001;
+    pointer-events: none; /* Allows clicks to pass through */
+    animation: slideInDown 0.3s ease-out;
+}
+
+.toast-content {
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    color: white;
+    min-width: 300px;
+}
+
+.toast-message {
+    margin: 0;
+    font-weight: 500;
+    font-size: 1em;
+}
+
+.status-icon {
+    margin-right: 15px;
+}
+
+/* Toast Color Schemes */
+.toast-content.success {
+    background-color: #10B981; /* Green */
+}
+.toast-content.error {
+    background-color: #EF4444; /* Red */
+}
+.toast-content.info {
+    background-color: #3B82F6; /* Blue */
+}
+
+.success-icon { color: #D1FAE5; }
+.error-icon { color: #FEE2E2; }
+.info-icon { color: #DBEAFE; }
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInDown {
+    from { opacity: 0; transform: translate(-50%, -20px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
 }
