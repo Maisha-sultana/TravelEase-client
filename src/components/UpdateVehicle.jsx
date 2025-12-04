@@ -164,7 +164,7 @@ const UpdateVehicle = () => {
         return (
             <div className="add-vehicle-container" style={{ textAlign: 'center' }}>
                 <p className="loading-text">
-                    <FaSpinner className="spinner" style={{ marginRight: '10px' }} />
+                   <FaSpinner className="spinner" />
                     Loading vehicle data...
                 </p>
                 {/* CSS for spinner (add to index.css if missing)

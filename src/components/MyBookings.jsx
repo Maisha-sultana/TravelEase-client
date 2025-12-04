@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { FaCar, FaUser, FaTag, FaCalendarAlt, FaClock, FaCheckCircle, FaTimesCircle, FaHourglassHalf, FaInfoCircle } from 'react-icons/fa';
+import { FaCar, FaUser, FaTag, FaCalendarAlt, FaClock, FaCheckCircle, FaTimesCircle, FaHourglassHalf, FaInfoCircle, FaSpinner } from 'react-icons/fa';
 
 // Component to display individual booking cards
 const BookingCard = ({ booking }) => {
@@ -143,7 +143,7 @@ const MyBookings = () => {
                     </p>
                 )}
                 
-                {loading && <p className="loading-text">Loading your bookings...</p>}
+                {loading && <p className="loading-text"><FaSpinner className="spinner" />Loading your bookings...</p>}
                 
                 {!loading && bookings.length === 0 && !statusMessage.startsWith('❌') && (
                     <div className="status-message info" style={{ maxWidth: '600px', margin: '30px auto', padding: '20px', textAlign: 'center' }}>

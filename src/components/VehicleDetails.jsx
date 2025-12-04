@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { FaCar, FaMapMarkerAlt, FaTag, FaUserCircle, FaCheckCircle, FaTimesCircle, FaCalendarAlt } from 'react-icons/fa';
+import { FaCar, FaMapMarkerAlt, FaTag, FaUserCircle, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaSpinner } from 'react-icons/fa';
 
 const VehicleDetails = () => {
     const { id } = useParams();
@@ -91,7 +91,13 @@ const VehicleDetails = () => {
 
 
     if (loading) {
-        return <p className="loading-text" style={{ padding: '40px' }}>Loading vehicle details...</p>;
+       return (
+             <div className="vehicle-details-wrapper" style={{ padding: '40px', textAlign: 'center' }}>
+                <p className="loading-text">
+                    <FaSpinner className="spinner" /> Loading vehicle details...
+                </p>
+            </div>
+        );
     }
 
     if (!vehicle) {

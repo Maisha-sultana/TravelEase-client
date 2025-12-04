@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'; 
 import { Link } from 'react-router-dom';
 // নতুন আইকন আমদানি করা হলো
-import { FaCar, FaAngleRight, FaMapMarkerAlt, FaTag, FaBus, FaCarSide, FaMotorcycle, FaTruck, FaQuoteLeft, FaGlobe, FaStar } from 'react-icons/fa';
+import { FaCar,FaSpinner, FaAngleRight, FaMapMarkerAlt, FaTag, FaBus, FaCarSide, FaMotorcycle, FaTruck, FaQuoteLeft, FaGlobe, FaStar } from 'react-icons/fa';
 // Swiper থেকে প্রয়োজনীয় মডিউল এবং কম্পোনেন্ট আমদানি
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
@@ -128,7 +128,9 @@ const Home = () => {
                 </div>
                 
                 {loading ? (
-                    <p className="loading-text">Loading latest vehicles...</p>
+                   <p className="loading-text">
+                        <FaSpinner className="spinner" /> Loading latest vehicles...
+                    </p>
                 ) : (
                     <div className="latest-vehicles-grid">
                         {latestVehicles.map(vehicle => (

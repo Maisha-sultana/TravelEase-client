@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 // Added FaTrash and FaEdit icons for actions
-import { FaAngleRight, FaMapMarkerAlt, FaTag, FaCar, FaTrash, FaEdit, FaUser, FaPlusCircle } from 'react-icons/fa';
+import { FaAngleRight, FaMapMarkerAlt, FaTag, FaCar, FaTrash, FaEdit, FaUser, FaPlusCircle, FaSpinner } from 'react-icons/fa';
 
 // Import the new modal component
 import DeleteConfirmationModal from './DeleteConfirmationModal'; // <-- NEW IMPORT
@@ -197,7 +197,7 @@ const MyVehicles = () => {
                     </p>
                 )}
                 
-                {loading && <p className="loading-text">Loading your vehicles...</p>}
+                {loading && <p className="loading-text"><FaSpinner className="spinner" />Loading your vehicles...</p>}
                 
                 {/* 3. Empty State Message (This will show if the database returns zero items) */}
                 {!loading && !fetchStatusMessage && vehicles.length === 0 && (

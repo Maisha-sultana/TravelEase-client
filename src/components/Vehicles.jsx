@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // প্রয়োজনীয় আইকন আমদানি করা হলো
-import { FaAngleRight, FaMapMarkerAlt, FaTag } from 'react-icons/fa';
+import { FaAngleRight, FaMapMarkerAlt, FaTag , FaSpinner} from 'react-icons/fa';
 
 // Reusable Vehicle Card Component (হোম পেজের card-এর মতো)
 const VehicleCard = ({ vehicle }) => (
@@ -123,7 +123,7 @@ const VehiclesPage = () => {
                     </select>
                 </div>
                 
-                {loading && <p className="loading-text">Loading all vehicles...</p>}
+                {loading && <p className="loading-text"><FaSpinner className="spinner" />Loading all vehicles...</p>}
                 
                 {error && <p className="status-message error">{error}</p>}
 

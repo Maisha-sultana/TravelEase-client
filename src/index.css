@@ -1693,3 +1693,40 @@ body {
     display: inline-block;
     vertical-align: middle;
 }
+
+.not-found-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-color: #f4f4f9;
+}
+
+.not-found-box {
+    background: white;
+    padding: 50px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+}
+
+.not-found-icon {
+    font-size: 4em;
+    color: #EF4444; /* Red */
+    margin-bottom: 20px;
+}
+
+.not-found-title {
+    font-size: 2.2em;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.not-found-text {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 30px;
+}
