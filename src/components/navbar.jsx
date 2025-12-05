@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // FaSignOutAlt, FaUserCircle আমদানি করা হয়েছে
-import { FaHome, FaCar, FaPlusCircle, FaSignInAlt, FaUserCircle, FaSignOutAlt } from 'react-icons/fa';
+import { FaHome, FaCar, FaPlusCircle, FaSignInAlt, FaUserCircle, FaSignOutAlt, FaSun, FaMoon } from 'react-icons/fa'; // <-- FaSun, FaMoon ADDED
 import { useAuth } from '../context/AuthContext'; 
+import { useTheme } from '../context/ThemeContext'; // <-- NEW IMPORT
 
 const Navbar = () => {
   const { user, logOut } = useAuth(); 
+  const { theme, toggleTheme } = useTheme(); // <-- NEW CONTEXT
 
   const navLinks = [
     { name: 'Home', path: '/', icon: FaHome },
@@ -43,8 +45,16 @@ const Navbar = () => {
         </div>
 
         {/* RIGHT: Conditional Login/User Section */}
-        <div>
-          {user ? (
+        <div className="nav-right-actions"> {/* <-- NEW WRAPPER */}
+            {/* Theme Toggle Button */}
+            <button onClick={toggleTheme} className="theme-toggle-btn">
+                {theme === 'light' ? 
+                    <FaMoon size={20} title="Switch to Dark Mode" /> : 
+                    <FaSun size={20} title="Switch to Light Mode" style={{ color: '#F97316' }} />
+                }
+            </button>
+            
+            {user ? (
             // --- লগইন করা থাকলে: প্রোফাইল পিকচার এবং হোভার মেনু ---
             <div className="user-profile-menu"> 
               <div 

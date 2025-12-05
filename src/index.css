@@ -1,6 +1,30 @@
 @import "tailwindcss";
 
 /* ====================================
+   0. THEME VARIABLES (NEW)
+==================================== */
+:root {
+    /* Light Theme Defaults */
+    --background-color: #f4f4f9;
+    --card-background: #ffffff;
+    --text-color: #333;
+    --secondary-text-color: #666;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-color: #ddd;
+    --highlight-color: #F97316;
+}
+
+.dark-theme {
+    /* Dark Theme Overrides */
+    --background-color: #1a1a2e; /* Deep blue/purple dark background */
+    --card-background: #272838; /* Slightly lighter card background */
+    --text-color: #f0f0f0; /* Light text */
+    --secondary-text-color: #a0a0a0; /* Lighter secondary text */
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --border-color: #444;
+}
+
+/* ====================================
    1. GLOBAL RESETS
 ==================================== */
 body {
@@ -10,10 +34,12 @@ body {
         sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #f4f4f9; /* Light background for the body */
+    background-color: var(--background-color); /* USE VARIABLE */
+    color: var(--text-color); /* USE VARIABLE */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    transition: background-color 0.5s, color 0.5s; /* Smooth transition */
 }
 
 /* Ensure the main root element (e.g., #root or div) spans full height */
@@ -47,7 +73,24 @@ body {
     padding: 15px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
+.nav-right-actions { /* NEW STYLE */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 
+.theme-toggle-btn { /* NEW STYLE */
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white; /* Default color in navbar */
+    transition: color 0.2s;
+    padding: 5px;
+}
+
+.theme-toggle-btn:hover {
+    color: var(--highlight-color);
+}
 .navbar-container {
     display: flex;
     justify-content: space-between;
@@ -148,20 +191,50 @@ body {
     padding: 0; 
 }
 /* ... (Existing styles like .main-content, etc.) ... */
+.sort-controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Right corner alignment */
+    max-width: 1200px;
+    margin: 0 auto 30px; /* Separator from title/grid */
+    padding: 0 20px;
+}
 
+.sort-controls label {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: var(--text-color); /* USE VARIABLE */
+    margin-right: 15px;
+}
+
+.sort-dropdown {
+    padding: 8px 15px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color); /* USE VARIABLE */
+    background-color: var(--card-background); /* USE VARIABLE */
+    color: var(--text-color); /* USE VARIABLE */
+    font-size: 1em;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.sort-dropdown:hover {
+    border-color: #F97316;
+}
 /* --- LOGIN PAGE STYLES --- */
 .login-page-container {
     max-width: 400px;
     margin: 40px auto;
     padding: 30px;
-    background: white;
+    background: var(--card-background); /* USE VARIABLE */
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px var(--shadow-color); /* USE VARIABLE */
     text-align: center;
+    transition: background 0.5s, box-shadow 0.5s;
 }
 
 .login-title {
-    color: #333;
+    color: var(--text-color); /* USE VARIABLE */
     margin-bottom: 30px;
     font-size: 1.8em;
     display: flex;
@@ -175,6 +248,8 @@ body {
     border: none;
     outline: none;
     font-size: 1em;
+    background-color: var(--card-background); /* USE VARIABLE */
+    color: var(--text-color); /* USE VARIABLE */
 }
 .login-input-icon {
     /* আইকন এবং টেক্সটের মধ্যে দূরত্ব তৈরি করা */
@@ -187,9 +262,9 @@ body {
     align-items: center;
     padding: 8px 12px;
     margin-bottom: 15px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color); /* USE VARIABLE */
     border-radius: 6px;
-    background-color: #f9f9f9;
+    background-color: var(--card-background); /* Use card bg for input field bg */
 }
 /* ---------------------------------- */
 
@@ -236,7 +311,7 @@ body {
 }
 
 .login-instruction {
-    color: #666;
+    color: var(--secondary-text-color); /* USE VARIABLE */
     margin-bottom: 20px;
 }
 .forget-password-link {
@@ -249,13 +324,14 @@ body {
     align-items: center;
     text-align: center;
     margin: 20px 0;
+    color: var(--secondary-text-color); /* USE VARIABLE */
 }
 
 .divider::before,
 .divider::after {
     content: '';
     flex: 1;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border-color); /* USE VARIABLE */
 }
 
 .divider:not(:empty)::before {
@@ -287,7 +363,7 @@ body {
 }
 
 .login-instruction {
-    color: #666;
+    color: var(--secondary-text-color); /* USE VARIABLE */
     margin-bottom: 20px;
 }
 .password-feedback {
@@ -302,6 +378,7 @@ body {
     padding: 3px 0;
     display: flex;
     align-items: center;
+    color: var(--secondary-text-color); /* Default to secondary text */
 }
 
 /* Invalid state (for failing the regex) */
@@ -337,15 +414,16 @@ body {
 .sort-controls label {
     font-size: 1.1em;
     font-weight: 500;
-    color: #333;
+    color: var(--text-color); /* USE VARIABLE */
     margin-right: 15px;
 }
 
 .sort-dropdown {
     padding: 8px 15px;
     border-radius: 6px;
-    border: 1px solid #ddd;
-    background-color: white;
+    border: 1px solid var(--border-color); /* USE VARIABLE */
+    background-color: var(--card-background); /* USE VARIABLE */
+    color: var(--text-color); /* USE VARIABLE */
     font-size: 1em;
     cursor: pointer;
     transition: border-color 0.2s;
@@ -398,15 +476,15 @@ body {
     right: 0; 
     top: 100%; 
     min-width: 150px;
-    background-color: white;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-color: var(--card-background); /* USE VARIABLE */
+    box-shadow: 0px 8px 16px 0px var(--shadow-color); /* USE VARIABLE */
     z-index: 10; 
     padding: 10px;
     border-radius: 5px;
     margin-top: 10px; 
     flex-direction: column; 
     gap: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color); /* USE VARIABLE */
 }
 
 /* 6. Show dropdown on hover over the entire container */
@@ -416,12 +494,12 @@ body {
 
 /* 7. Style for the name inside the dropdown */
 .user-display-name {
-    color: #333;
+    color: var(--text-color); /* USE VARIABLE */
     font-size: 0.9em;
     font-weight: 500;
     padding: 5px 0;
     text-align: center;
-    border-bottom: 1px solid #eee; 
+    border-bottom: 1px solid var(--border-color); /* USE VARIABLE */
 }
 
 /* 8. Style for the Logout Button inside the dropdown */
@@ -577,8 +655,9 @@ body {
 ==================================== */
 .info-section {
     padding: 60px 20px;
-    background-color: #ffffff;
+    background-color: var(--card-background); /* USE VARIABLE */
     text-align: center;
+    transition: background-color 0.5s;
 }
 
 .info-container {
@@ -593,8 +672,9 @@ body {
     flex: 1;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    background-color: #f4f4f9;
+    box-shadow: 0 4px 15px var(--shadow-color); /* USE VARIABLE */
+    background-color: var(--background-color); /* USE VARIABLE */
+    transition: background-color 0.5s, box-shadow 0.5s;
 }
 
 .info-box h3 {
@@ -604,7 +684,7 @@ body {
 }
 
 .info-box p {
-    color: #666;
+    color: var(--secondary-text-color); /* USE VARIABLE */
 }
 
 /* ====================================
@@ -612,13 +692,14 @@ body {
 ==================================== */
 .latest-vehicles-section {
     padding: 30px 20px;
-    background-color: #fcfcfc; /* Light background for contrast */
+    background-color: var(--background-color); /* USE VARIABLE */
+    transition: background-color 0.5s;
 }
 
 .section-title {
     font-size: 2.5em;
     font-weight: 700;
-    color: #333;
+    color: var(--text-color); /* USE VARIABLE */
     text-align: center;
     margin-bottom: 30px;
    
@@ -641,16 +722,16 @@ body {
 }
 
 .vehicle-card {
-    background-color: white;
+    background-color: var(--card-background); /* USE VARIABLE */
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 15px var(--shadow-color); /* USE VARIABLE */
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.5s;
 }
 
 .vehicle-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 25px var(--shadow-color);
 }
 
 .card-image-wrapper {
@@ -683,7 +764,7 @@ body {
 .card-category,
 .card-location {
     font-size: 0.9em;
-    color: #666;
+    color: var(--secondary-text-color); /* USE VARIABLE */
     margin-bottom: 5px;
     display: flex;
     align-items: center;
@@ -691,7 +772,7 @@ body {
 
 .card-price {
     font-size: 1.1em;
-    color: #333;
+    color: var(--text-color); /* USE VARIABLE */
     margin: 15px 0;
     font-weight: bold;
 }
@@ -713,15 +794,86 @@ body {
 }
 
 /* ====================================
+   NEW: FILTER/SORT CONTROLS STYLES
+==================================== */
+
+.filter-sort-controls-wrapper {
+    display: flex;
+    flex-wrap: wrap; 
+    align-items: center;
+    justify-content: flex-end; 
+    max-width: 1200px;
+    margin: 0 auto 30px; 
+    padding: 0 20px;
+    gap: 20px; 
+}
+
+.filter-control-group {
+    display: flex;
+    align-items: center;
+}
+
+.filter-control-group label {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: var(--text-color); /* USE VARIABLE */
+    margin-right: 10px;
+}
+
+.filter-dropdown,
+.filter-text-input {
+    padding: 8px 15px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color); /* USE VARIABLE */
+    background-color: var(--card-background); /* USE VARIABLE */
+    color: var(--text-color); /* USE VARIABLE */
+    font-size: 1em;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    outline: none;
+}
+
+.filter-dropdown:hover,
+.filter-text-input:hover {
+    border-color: var(--highlight-color);
+}
+
+.filter-text-input::placeholder {
+    color: var(--secondary-text-color); /* USE VARIABLE */
+    opacity: 0.6;
+}
+
+.sort-dropdown {
+    padding: 8px 15px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color); /* USE VARIABLE */
+    background-color: var(--card-background); /* USE VARIABLE */
+    color: var(--text-color); /* USE VARIABLE */
+    font-size: 1em;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.sort-dropdown:hover {
+    border-color: var(--highlight-color);
+}
+
+@media (max-width: 768px) {
+    .filter-sort-controls-wrapper {
+        justify-content: center; 
+    }
+}
+/* ====================================
    6. ADD VEHICLE FORM STYLES
 ==================================== */
 .add-vehicle-container {
     max-width: 600px;
     margin: 40px auto;
     padding: 30px;
-    background: white;
+    background: var(--card-background); /* USE VARIABLE */
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px var(--shadow-color); /* USE VARIABLE */
+    transition: background 0.5s, box-shadow 0.5s;
 }
 
 .add-vehicle-title {
@@ -741,7 +893,7 @@ body {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color); /* USE VARIABLE */
     border-radius: 6px;
     box-sizing: border-box;
     font-size: 1em;
@@ -749,7 +901,8 @@ body {
     -webkit-appearance: none; 
     -moz-appearance: none;
     appearance: none;
-    background-color: white; /* Ensure it looks like an input */
+    background-color: var(--card-background); /* USE VARIABLE */
+    color: var(--text-color); /* USE VARIABLE */
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23F97316'%3E%3Cpath d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd' fill-rule='evenodd'%3E%3C/path%3E%3C/svg%3E"); /* Custom Arrow */
     background-repeat: no-repeat;
     background-position: right 0.7em top 50%;
@@ -779,9 +932,9 @@ body {
 .file-label {
     display: block;
     padding: 12px;
-    background-color: #f4f4f9;
-    color: #333;
-    border: 2px dashed #ccc;
+    background-color: var(--background-color); /* USE VARIABLE */
+    color: var(--text-color); /* USE VARIABLE */
+    border: 2px dashed var(--border-color); /* USE VARIABLE */
     border-radius: 6px;
     cursor: pointer;
     text-align: center;
@@ -789,7 +942,7 @@ body {
 }
 
 .file-label:hover {
-    background-color: #e6e6f0;
+    background-color: var(--border-color); /* Slight hover effect */
 }
 
 .file-input-wrapper input[type="file"] {
@@ -851,8 +1004,9 @@ body {
 ==================================== */
 .categories-section {
     padding: 40px 20px;
-    background-color: #ffffff; 
+    background-color: var(--card-background); /* USE VARIABLE */
     text-align: center;
+    transition: background-color 0.5s;
 }
 
 .categories-grid {
@@ -867,8 +1021,8 @@ body {
     text-decoration: none;
     padding: 30px;
     border-radius: 12px;
-    background-color: #fae6d7;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    background-color: var(--background-color); /* USE VARIABLE */
+    box-shadow: 0 4px 10px var(--shadow-color); /* USE VARIABLE */
     transition: transform 0.3s, background-color 0.3s;
     display: flex;
     flex-direction: column;
@@ -896,7 +1050,7 @@ body {
 .category-name {
     font-size: 1.3em;
     font-weight: 600;
-    color: #333;
+    color: var(--text-color); /* USE VARIABLE */
     transition: color 0.3s;
 }
 
@@ -974,8 +1128,9 @@ body {
 ==================================== */
 .featured-owner-section {
     padding: 40px 20px;
-    background-color: #ffffff;
+    background-color: var(--card-background); /* USE VARIABLE */
     text-align: center;
+    transition: background-color 0.5s;
 }
 
 .owner-card-container {
@@ -985,10 +1140,11 @@ body {
 
 .owner-card {
     padding: 35px 30px; /* Increased padding */
-    background: linear-gradient(145deg, #f9f9f9, #fcdbb5); /* Slight gradient */
+    background: var(--background-color); /* USE VARIABLE */
+    /* Removed gradient for theme compatibility */
     border-radius: 20px; /* More rounded */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Stronger shadow */
-    border: 1px solid #ddd;
+    box-shadow: 0 10px 30px var(--shadow-color); /* USE VARIABLE */
+    border: 1px solid var(--border-color); /* USE VARIABLE */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -997,7 +1153,7 @@ body {
 
 .owner-card:hover {
     transform: scale(1.03) translateY(-5px); /* Lift and grow on hover */
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 40px var(--shadow-color);
 }
 
 .owner-photo {
@@ -1029,14 +1185,14 @@ body {
 }
 
 .owner-bio {
-    color: #666;
+    color: var(--secondary-text-color); /* USE VARIABLE */
     font-size: 1em;
     margin-bottom: 15px;
     line-height: 1.5;
 }
 
 .owner-joined {
-    color: #888;
+    color: var(--secondary-text-color); /* USE VARIABLE */
     font-size: 0.9em;
     margin-bottom: 20px;
 }
@@ -1066,10 +1222,11 @@ body {
 }
 
 .details-card {
-    background: white;
+    background: var(--card-background); /* USE VARIABLE */
     border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 20px var(--shadow-color); /* USE VARIABLE */
     overflow: hidden;
+    transition: background-color 0.5s, box-shadow 0.5s;
 }
 
 /* Header (Image and Title) */
@@ -1135,12 +1292,13 @@ body {
 .info-box, .owner-box, .booking-box {
     padding: 20px;
     border-radius: 8px;
-    border: 1px solid #eee;
-    background-color: #fcfcfc;
+    border: 1px solid var(--border-color); /* USE VARIABLE */
+    background-color: var(--background-color); /* USE VARIABLE */
+    transition: background-color 0.5s, border-color 0.5s;
 }
 
 .info-box h2, .details-sidebar h3 {
-    color: #333;
+    color: var(--text-color); /* USE VARIABLE */
     font-size: 1.5em;
     margin-bottom: 15px;
     border-bottom: 2px solid #F97316;
@@ -1150,13 +1308,13 @@ body {
 
 .description-text {
     line-height: 1.6;
-    color: #555;
+    color: var(--secondary-text-color); /* USE VARIABLE */
     margin-bottom: 20px;
 }
 
 /* Features Section */
 .features-section h2 {
-    color: #333;
+    color: var(--text-color); /* USE VARIABLE */
     border-bottom: 2px solid #F97316;
 }
 
@@ -1171,10 +1329,11 @@ body {
     display: flex;
     align-items: center;
     font-size: 1em;
-    color: #555;
-    background-color: #f4f4f9;
+    color: var(--secondary-text-color); /* USE VARIABLE */
+    background-color: var(--card-background); /* USE VARIABLE */
     padding: 10px;
     border-radius: 4px;
+    border: 1px solid var(--border-color); /* USE VARIABLE */
 }
 
 /* Owner Info */
@@ -1190,13 +1349,13 @@ body {
 
 .owner-name {
     font-weight: 600;
-    color: #333;
+    color: var(--text-color); /* USE VARIABLE */
     margin-bottom: 5px;
 }
 
 .owner-email, .owner-joined {
     font-size: 0.9em;
-    color: #777;
+    color: var(--secondary-text-color); /* USE VARIABLE */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1240,7 +1399,7 @@ body {
 
 .booking-note {
     font-size: 0.8em;
-    color: #999;
+    color: var(--secondary-text-color); /* USE VARIABLE */
     text-align: center;
     margin-top: 15px;
 }
@@ -1296,18 +1455,18 @@ body {
 /* New Horizontal Card Style for My Vehicles */
 .owner-vehicle-row-card {
     display: flex; /* Key change: make content horizontal */
-    background-color: white;
-    border: 1px solid #e0e0e0;
+    background-color: var(--card-background); /* USE VARIABLE */
+    border: 1px solid var(--border-color); /* USE VARIABLE */
     border-radius: 8px;
     margin-bottom: 20px; /* Space between cards */
     overflow: hidden; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 10px var(--shadow-color); /* USE VARIABLE */
     transition: transform 0.3s ease-in-out;
 }
 
 .owner-vehicle-row-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 15px var(--shadow-color);
 }
 
 /* Image Wrapper (Left Side) */
@@ -1345,7 +1504,7 @@ body {
     font-weight: 700;
     margin-top: 0;
     margin-bottom: 10px;
-    color: #1a1a1a;
+    color: var(--text-color); /* USE VARIABLE */
 }
 
 
@@ -1468,10 +1627,10 @@ body {
 
 /* Modal Container (The actual pop-up box) */
 .modal-container {
-    background: white;
+    background: var(--card-background); /* USE VARIABLE */
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px var(--shadow-color); /* USE VARIABLE */
     max-width: 400px;
     width: 90%;
     text-align: center;
@@ -1483,7 +1642,7 @@ body {
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-    color: #333;
+    color: var(--text-color); /* USE VARIABLE */
 }
 
 .modal-header h3 {
@@ -1498,7 +1657,7 @@ body {
 
 .modal-body-text {
     font-size: 1.1em;
-    color: #555;
+    color: var(--secondary-text-color); /* USE VARIABLE */
     margin-bottom: 30px;
 }
 
@@ -1605,17 +1764,17 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
-    border: 1px solid #e0e0e0;
+    background-color: var(--card-background); /* USE VARIABLE */
+    border: 1px solid var(--border-color); /* USE VARIABLE */
     border-radius: 8px;
     margin-bottom: 20px;
     padding: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 8px var(--shadow-color); /* USE VARIABLE */
     transition: box-shadow 0.3s;
 }
 
 .booking-card-row:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px var(--shadow-color);
 }
 
 .booking-content-area {
@@ -1625,7 +1784,7 @@ body {
 .booking-title {
     font-size: 1.5em;
     font-weight: 700;
-    color: #333;
+    color: var(--text-color); /* USE VARIABLE */
     margin-bottom: 15px;
     display: flex;
     align-items: center;
@@ -1633,7 +1792,7 @@ body {
 
 .booking-detail, .booking-price {
     font-size: 0.95em;
-    color: #666;
+    color: var(--secondary-text-color); /* USE VARIABLE */
     margin-bottom: 5px;
     display: flex;
     align-items: center;
@@ -1699,14 +1858,15 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 80vh;
-    background-color: #f4f4f9;
+    background-color: var(--background-color); /* USE VARIABLE */
+    transition: background-color 0.5s;
 }
 
 .not-found-box {
-    background: white;
+    background: var(--card-background); /* USE VARIABLE */
     padding: 50px 40px;
     border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 20px var(--shadow-color); /* USE VARIABLE */
     text-align: center;
     max-width: 500px;
     width: 90%;
@@ -1720,13 +1880,13 @@ body {
 
 .not-found-title {
     font-size: 2.2em;
-    color: #333;
+    color: var(--text-color); /* USE VARIABLE */
     margin-bottom: 15px;
     font-weight: 700;
 }
 
 .not-found-text {
     font-size: 1.1em;
-    color: #666;
+    color: var(--secondary-text-color); /* USE VARIABLE */
     margin-bottom: 30px;
 }

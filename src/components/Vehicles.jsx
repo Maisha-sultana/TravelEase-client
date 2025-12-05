@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react'; // <-- useMemo ADDED
 import { Link } from 'react-router-dom';
 // প্রয়োজনীয় আইকন আমদানি করা হলো
 import { FaAngleRight, FaMapMarkerAlt, FaTag , FaSpinner} from 'react-icons/fa';
@@ -43,6 +43,14 @@ const VehiclesPage = () => {
     // Sort Key: 'none', 'price_asc', 'price_desc', 'name_asc', 'category_asc'
     const [sortKey, setSortKey] = useState('none'); 
     const [error, setError] = useState(null);
+    
+    // --- NEW FILTER STATES ---
+    const [categoryFilter, setCategoryFilter] = useState(''); // '' means all categories
+    const [locationFilter, setLocationFilter] = useState(''); // '' means all locations
+    
+    // Hardcoded categories from AddVehicle.jsx
+    const allCategories = ['Sedan', 'SUV', 'Electric', 'Van', 'Truck', 'Motorcycle'];
+    // -------------------------
 
     // Fetch Logic
     useEffect(() => {
@@ -67,6 +75,24 @@ const VehiclesPage = () => {
             });
     }, []);
 
+    // Function to apply filtering
+    const filterVehicles = (data) => {
+        let filteredData = [...data];
+
+        if (categoryFilter) {
+            filteredData = filteredData.filter(v => v.category === categoryFilter);
+        }
+        
+        // Simple case-insensitive inclusion filter for location
+        if (locationFilter) {
+            filteredData = filteredData.filter(v => 
+                v.location && v.location.toLowerCase().includes(locationFilter.toLowerCase())
+            );
+        }
+
+        return filteredData;
+    };
+    
     // Function to apply sorting 
     const sortVehicles = (data) => {
         let sortedData = [...data];
@@ -87,18 +113,29 @@ const VehiclesPage = () => {
                 break;
             case 'none':
             default:
-                // Default sorting is by _id (latest added)
-                // We assume default fetched order is by insertion, so we sort by insertion order descending if 'none' is selected
                 break; 
         }
         return sortedData;
     };
     
-    // Apply sorting to the current list
-    const sortedVehicles = sortVehicles(vehicles);
+    // Apply filtering and sorting using useMemo for performance optimization
+    const displayVehicles = useMemo(() => {
+        let result = filterVehicles(vehicles);
+        result = sortVehicles(result);
+        return result;
+    }, [vehicles, categoryFilter, locationFilter, sortKey]);
+
 
     const handleSortChange = (e) => {
         setSortKey(e.target.value);
+    };
+    
+    const handleCategoryChange = (e) => {
+        setCategoryFilter(e.target.value);
+    };
+    
+    const handleLocationChange = (e) => {
+        setLocationFilter(e.target.value);
     };
 
 
@@ -111,29 +148,59 @@ const VehiclesPage = () => {
                     </h2>
                 </div>
                 
-                {/* Sort Functionality Dropdown in the corner */}
-                <div className="sort-controls">
-                    <label htmlFor="sort-select">Sort By:</label>
-                    <select id="sort-select" value={sortKey} onChange={handleSortChange} className="sort-dropdown">
-                        <option value="none">Default (Latest)</option>
-                        <option value="name_asc">Name (A-Z)</option>
-                        <option value="category_asc">Category Name</option>
-                        <option value="price_asc">Price (Low to High)</option>
-                        <option value="price_desc">Price (High to Low)</option>
-                    </select>
+                {/* --- FILTER & SORT CONTROLS (NEW) --- */}
+                <div className="filter-sort-controls-wrapper">
+                    
+                    {/* 1. Category Filter Dropdown */}
+                    <div className="filter-control-group">
+                        <label htmlFor="category-select">Category:</label>
+                        <select id="category-select" value={categoryFilter} onChange={handleCategoryChange} className="filter-dropdown">
+                            <option value="">All Categories</option>
+                            {allCategories.map(cat => (
+                                <option key={cat} value={cat}>{cat}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    {/* 2. Location Filter Input (Text input for search) */}
+                    <div className="filter-control-group">
+                        <label htmlFor="location-input">Location:</label>
+                        <input
+                            type="text"
+                            id="location-input"
+                            value={locationFilter}
+                            onChange={handleLocationChange}
+                            placeholder="e.g., Dhaka"
+                            className="filter-text-input"
+                        />
+                    </div>
+
+                    {/* 3. Sort Functionality Dropdown (moved into the wrapper) */}
+                    <div className="filter-control-group">
+                        <label htmlFor="sort-select">Sort By:</label>
+                        <select id="sort-select" value={sortKey} onChange={handleSortChange} className="sort-dropdown">
+                            <option value="none">Default (Latest)</option>
+                            <option value="name_asc">Name (A-Z)</option>
+                            <option value="category_asc">Category Name</option>
+                            <option value="price_asc">Price (Low to High)</option>
+                            <option value="price_desc">Price (High to Low)</option>
+                        </select>
+                    </div>
+
                 </div>
+                {/* ---------------------------------- */}
                 
                 {loading && <p className="loading-text"><FaSpinner className="spinner" />Loading all vehicles...</p>}
                 
                 {error && <p className="status-message error">{error}</p>}
 
-                {!loading && !error && sortedVehicles.length === 0 && (
-                    <p className="loading-text">No vehicles found. Start adding some!</p>
+                {!loading && !error && displayVehicles.length === 0 && (
+                    <p className="loading-text">No vehicles found matching your criteria.</p>
                 )}
 
-                {!loading && !error && sortedVehicles.length > 0 && (
+                {!loading && !error && displayVehicles.length > 0 && (
                     <div className="latest-vehicles-grid">
-                        {sortedVehicles.map(vehicle => (
+                        {displayVehicles.map(vehicle => (
                             <VehicleCard key={vehicle._id} vehicle={vehicle} />
                         ))}
                     </div>

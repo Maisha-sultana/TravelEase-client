@@ -5,6 +5,7 @@ import Navbar from './components/navbar';
 import Footer from './components/footer'; 
 import LoginPage from './components/LoginPage';
 import AuthProvider from './context/AuthContext'; 
+import ThemeProvider from './context/ThemeContext';
 import Home from './components/Home';
 import AddVehicle from './components/AddVehicle';
 import RegisterPage from './components/RegisterPage';
@@ -24,7 +25,8 @@ const App = () => {
   return (
     // 💥 FIX 2: Wrap the Router (and the whole app) with AuthProvider
     <AuthProvider>
-      <Router>
+     <ThemeProvider>
+       <Router>
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           <Navbar />
           
@@ -83,6 +85,7 @@ const App = () => {
           <Footer />
         </div>
       </Router>
+     </ThemeProvider>
     </AuthProvider>
   );
 };
