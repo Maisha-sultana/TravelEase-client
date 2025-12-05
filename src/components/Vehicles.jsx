@@ -49,7 +49,7 @@ const VehiclesPage = () => {
     const [locationFilter, setLocationFilter] = useState(''); // '' means all locations
     
     // Hardcoded categories from AddVehicle.jsx
-    const allCategories = ['Sedan', 'SUV', 'Electric', 'Van', 'Truck', 'Motorcycle'];
+    const allCategories = ['Sedan', 'Suv', 'Electric', 'Van',  'Motorbike'];
     // -------------------------
 
     // Fetch Logic
@@ -79,8 +79,11 @@ const VehiclesPage = () => {
     const filterVehicles = (data) => {
         let filteredData = [...data];
 
-        if (categoryFilter) {
-            filteredData = filteredData.filter(v => v.category === categoryFilter);
+      if (categoryFilter) {
+            // ✅ CRITICAL FIX: v.category এর পরিবর্তে v.categories ব্যবহার করা হয়েছে।
+            filteredData = filteredData.filter(v => 
+                (v.categories || v.category) && (v.categories || v.category).toLowerCase() === categoryFilter.toLowerCase()
+            );
         }
         
         // Simple case-insensitive inclusion filter for location
