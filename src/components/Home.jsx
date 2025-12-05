@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'; 
 import { Link } from 'react-router-dom';
 // নতুন আইকন আমদানি করা হলো
-import { FaCar,FaSpinner, FaAngleRight, FaMapMarkerAlt, FaTag, FaBus, FaCarSide, FaMotorcycle, FaTruck, FaQuoteLeft, FaGlobe, FaStar } from 'react-icons/fa';
+import { FaCar,FaSpinner, FaAngleRight, FaMapMarkerAlt, FaTag, FaBus, FaCarSide, FaMotorcycle, FaTruck, FaQuoteLeft, FaGlobe, FaStar, FaClock } from 'react-icons/fa';
 // Swiper থেকে প্রয়োজনীয় মডিউল এবং কম্পোনেন্ট আমদানি
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { formatDistanceToNowStrict, parseISO } from 'date-fns';
 
 // Swiper এর CSS ফাইল আমদানি
 import 'swiper/css';
@@ -144,11 +145,18 @@ const Home = () => {
                                 {/* কন্টেন্ট */}
                                 <div className="card-content">
                                     <h3 className="card-title">{vehicle.vehicleName}</h3>
+
+                                    {vehicle.createdAt && (
+                                        <p className="card-timestamp"> {/* Using a new class for styling */}
+                                            <FaClock style={{ marginRight: '5px' }} />
+                                            Added {formatDistanceToNowStrict(parseISO(vehicle.createdAt), { addSuffix: true })}
+                                        </p>
+                                    )}
                                     
                                     {/* ক্যাটেগরি */}
                                     <p className="card-category">
                                         <FaTag style={{ marginRight: '5px' }} />
-                                        {vehicle.category}
+                                        {vehicle.categories}
                                     </p>
                                     
                                     {/* লোকেশন */}

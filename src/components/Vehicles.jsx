@@ -15,7 +15,7 @@ const VehicleCard = ({ vehicle }) => (
             
             <p className="card-category">
                 <FaTag style={{ marginRight: '5px' }} />
-                {vehicle.category}
+                {vehicle.categories}
             </p>
             
             <p className="card-location">
@@ -184,7 +184,7 @@ const VehiclesPage = () => {
                         <select id="sort-select" value={sortKey} onChange={handleSortChange} className="sort-dropdown">
                             <option value="none">Default (Latest)</option>
                             <option value="name_asc">Name (A-Z)</option>
-                            <option value="category_asc">Category Name</option>
+                           
                             <option value="price_asc">Price (Low to High)</option>
                             <option value="price_desc">Price (High to Low)</option>
                         </select>

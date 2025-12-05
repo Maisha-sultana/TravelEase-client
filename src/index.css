@@ -1890,3 +1890,12 @@ body {
     color: var(--secondary-text-color); /* USE VARIABLE */
     margin-bottom: 30px;
 }
+.card-category,
+.card-location,
+.card-timestamp { /* <-- ADDED .card-timestamp to match styling of category/location */
+    font-size: 0.9em;
+    color: var(--secondary-text-color); /* USE VARIABLE */
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}

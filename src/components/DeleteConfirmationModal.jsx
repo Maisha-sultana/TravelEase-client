@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaTrash, FaCheckCircle, FaTimesCircle, FaExclamationTriangle } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion'; // <-- NEW IMPORT
 
 const DeleteConfirmationModal = ({ 
     isOpen, 
@@ -9,8 +10,6 @@ const DeleteConfirmationModal = ({
     statusType, 
     message 
 }) => {
-    if (!isOpen) return null;
-
     // --- Modal Content for CONFIRMATION Mode ---
     const confirmationContent = (
         <>
@@ -59,22 +58,44 @@ const DeleteConfirmationModal = ({
         </div>
     );
     
-    // RENDER: Main Modal Structure
+    // RENDER: Main Modal Structure using Framer Motion
     return (
-        <div className="modal-overlay" onClick={mode === 'status' ? onClose : undefined}>
-            {mode === 'confirm' ? (
-                <div 
-                    className="modal-container" 
-                    onClick={(e) => e.stopPropagation()} 
+        <AnimatePresence>
+            {isOpen && (
+                // Motion for Overlay (fades in)
+                <motion.div 
+                    className="modal-overlay" 
+                    onClick={mode === 'status' ? onClose : undefined}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
                 >
-                    {confirmationContent}
-                </div>
-            ) : (
-                <div className="toast-container">
-                    {statusContent}
-                </div>
+                    {mode === 'confirm' ? (
+                        // Motion for Modal Container (pops in with spring effect)
+                        <motion.div 
+                            className="modal-container" 
+                            onClick={(e) => e.stopPropagation()} 
+                            initial={{ y: -50, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: -50, opacity: 0 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        >
+                            {confirmationContent}
+                        </motion.div>
+                    ) : (
+                        // Motion for Toast Container (slides down)
+                        <motion.div 
+                            className="toast-container"
+                            initial={{ y: -50, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: -50, opacity: 0 }}
+                        >
+                            {statusContent}
+                        </motion.div>
+                    )}
+                </motion.div>
             )}
-        </div>
+        </AnimatePresence>
     );
 };
 

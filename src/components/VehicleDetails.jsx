@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { FaCar, FaMapMarkerAlt, FaTag, FaUserCircle, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaSpinner } from 'react-icons/fa';
-
+import { format } from 'date-fns';
 const VehicleDetails = () => {
     const { id } = useParams();
     const { user } = useAuth();
@@ -152,9 +152,10 @@ const VehicleDetails = () => {
                             <FaUserCircle className="owner-icon" />
                             <h3 className="owner-name">Listed by: {vehicle.owner}</h3>
                             <p className="owner-email">Contact: {vehicle.userEmail}</p>
-                            <p className="owner-joined">
+                          <p className="owner-joined">
                                 <FaCalendarAlt style={{ marginRight: '5px' }} />
-                                Listed on: {new Date(vehicle.createdAt).toLocaleDateString()}
+                                {/* ✅ FIX: Use date-fns for formatting */}
+                                Listed on: {format(new Date(vehicle.createdAt), 'MMM d, yyyy')}
                             </p>
                         </div>
 

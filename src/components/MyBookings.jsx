@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { FaCar, FaUser, FaTag, FaCalendarAlt, FaClock, FaCheckCircle, FaTimesCircle, FaHourglassHalf, FaInfoCircle, FaSpinner } from 'react-icons/fa';
-
+import { format } from 'date-fns';
 // Component to display individual booking cards
 const BookingCard = ({ booking }) => {
     
@@ -31,13 +31,7 @@ const BookingCard = ({ booking }) => {
         }
     };
     
-    const bookingDate = new Date(booking.bookingDate).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-    });
+    const bookingDateFormatted = format(new Date(booking.bookingDate), 'MMM d, yyyy @ p');
 
     return (
         <div className="booking-card-row" data-aos="fade-up">
@@ -47,19 +41,15 @@ const BookingCard = ({ booking }) => {
                     {booking.vehicleName}
                 </h3>
                 
-                <p className="booking-detail">
-                    <FaTag style={{ marginRight: '5px' }} />
-                    Category: <strong>{booking.category || 'N/A'}</strong>
-                </p>
+               
                 
                 <p className="booking-detail">
                     <FaUser style={{ marginRight: '5px' }} />
                     Owner Contact: <strong>{booking.ownerEmail}</strong>
                 </p>
-                
                 <p className="booking-detail">
                     <FaCalendarAlt style={{ marginRight: '5px' }} />
-                    Requested On: <strong>{bookingDate}</strong>
+                    Requested On: <strong>{bookingDateFormatted}</strong>
                 </p>
                 
                 <p className="booking-price">
