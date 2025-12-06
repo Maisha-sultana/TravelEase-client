@@ -1,52 +1,102 @@
-import React from 'react';
+import React, { useState } from 'react'; 
 import { Link } from 'react-router-dom';
-// FaSignOutAlt, FaUserCircle আমদানি করা হয়েছে
-import { FaHome, FaCar, FaPlusCircle, FaSignInAlt, FaUserCircle, FaSignOutAlt, FaSun, FaMoon } from 'react-icons/fa'; // <-- FaSun, FaMoon ADDED
+import { 
+    FaHome, 
+    FaCar, 
+    FaPlusCircle, 
+    FaSignInAlt, 
+    FaUserCircle, 
+    FaSignOutAlt, 
+    FaSun, 
+    FaMoon, 
+    FaBars, 
+    FaCalendarAlt 
+} from 'react-icons/fa'; 
 import { useAuth } from '../context/AuthContext'; 
-import { useTheme } from '../context/ThemeContext'; // <-- NEW IMPORT
+import { useTheme } from '../context/ThemeContext'; 
 
 const Navbar = () => {
   const { user, logOut } = useAuth(); 
-  const { theme, toggleTheme } = useTheme(); // <-- NEW CONTEXT
+  const { theme, toggleTheme } = useTheme();
+  const [menuOpen, setMenuOpen] = useState(false);
+  
+  // Toggle function for the mobile menu
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+  
 
   const navLinks = [
     { name: 'Home', path: '/', icon: FaHome },
     { name: 'All Vehicles', path: '/vehicles', icon: FaCar },
-    { name: 'Add Vehicle', path: '/add-vehicle', icon: FaPlusCircle },
-    // Protected links: only visible if user is logged in
+    { name: 'Add Vehicle', path: '/add-vehicle', icon: FaPlusCircle, protected: true }, 
+ 
     { name: 'My Vehicles', path: '/my-vehicle', icon: FaCar, protected: true }, 
-    { name: 'My Bookings', path: '/my-booking', icon: FaPlusCircle, protected: true }, 
+    { name: 'My Bookings', path: '/my-booking', icon: FaCalendarAlt, protected: true }, 
   ];
   
   const handleLogOut = () => {
-    // লগআউট সফল না হলে এরর দেখাবে
     logOut().catch((error) => console.error('Logout Error:', error));
   };
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        {/* LEFT: Website Name/Logo */}
+   
         <Link to="/" className="navbar-logo">
-          **TravelEase**
+          TravelEase
         </Link>
+        
+        {/* Mobile Menu Button (Hamburger) */}
+        <button className="menu-toggle-btn" onClick={toggleMenu}>
+            <FaBars size={20} />
+        </button>
 
-        {/* CENTER: Navigation Links */}
-        <div className="nav-links">
+        <div className={`nav-links ${menuOpen ? 'nav-open' : ''}`}>
           {navLinks.map((link) => (
-            // User লগইন করা থাকলে বা লিংকটি Protected না হলে দেখাবে
             (user || !link.protected) && (
-              <Link key={link.name} to={link.path} className="nav-item nav-item-with-icon">
+              <Link 
+                key={link.name} 
+                to={link.path} 
+                className="nav-item nav-item-with-icon"
+                onClick={() => setMenuOpen(false)} // Close menu on link click
+              >
                 <link.icon style={{ marginRight: '5px' }} />
                 {link.name}
               </Link>
             )
           ))}
+        
+        <div className="nav-mobile-actions">
+             <button onClick={toggleTheme} className="theme-toggle-btn-mobile">
+                {theme === 'light' ? 
+                    <><FaMoon style={{ marginRight: '5px' }} /> Switch to Dark Mode</> : 
+                    <><FaSun style={{ marginRight: '5px', color: '#F97316' }} /> Switch to Light Mode</>
+                }
+            </button>
+            
+            {user ? (
+                <button onClick={handleLogOut} className="logout-btn-mobile">
+                    <FaSignOutAlt style={{ marginRight: '5px' }} />
+                    LogOut ({user.displayName || user.email})
+                </button>
+            ) : (
+                <>
+                    <Link to="/login" className="login-btn-mobile" onClick={() => setMenuOpen(false)}>
+                        <FaSignInAlt style={{ marginRight: '5px' }} />
+                        Login
+                    </Link>
+                    <Link to="/register" className="register-btn-mobile" onClick={() => setMenuOpen(false)}>
+                        Register
+                    </Link>
+                </>
+            )}
+        </div>
         </div>
 
-        {/* RIGHT: Conditional Login/User Section */}
-        <div className="nav-right-actions"> {/* <-- NEW WRAPPER */}
-            {/* Theme Toggle Button */}
+        {/* Desktop Right Actions (Hidden on mobile) */}
+        <div className="nav-right-actions nav-desktop-actions"> 
+  
             <button onClick={toggleTheme} className="theme-toggle-btn">
                 {theme === 'light' ? 
                     <FaMoon size={20} title="Switch to Dark Mode" /> : 
@@ -55,23 +105,19 @@ const Navbar = () => {
             </button>
             
             {user ? (
-            // --- লগইন করা থাকলে: প্রোফাইল পিকচার এবং হোভার মেনু ---
             <div className="user-profile-menu"> 
               <div 
                 className="user-photo-wrapper"
               >
-                {/* User Photo URL থাকলে ছবি দেখাবে, না হলে আইকন দেখাবে */}
                 {user.photoURL ? (
                   <img src={user.photoURL} alt="User" className="user-photo" />
                 ) : (
                   <FaUserCircle className="user-icon" size={36} />
                 )}
               </div>
-              
-              {/* ড্রপডাউন মেনু (CSS দিয়ে হোভার ইফেক্ট করা হবে) */}
+           
               <div className="dropdown-content">
                 <span className="user-display-name">
-                    {/* ইউজারনেম না থাকলে ইমেইল দেখাবে */}
                     {user.displayName || user.email} 
                 </span>
                 <button onClick={handleLogOut} className="logout-btn-dropdown">
@@ -81,7 +127,6 @@ const Navbar = () => {
               </div>
             </div>
           ) : (
-            // --- লগইন না করা থাকলে: Login এবং Register বাটন ---
             <div className="auth-buttons">
               <Link to="/login" className="login-btn login-btn-with-icon">
                 <FaSignInAlt style={{ marginRight: '5px' }} />

@@ -16,14 +16,13 @@ import MyVehicles from './components/MyVehicles';
 import UpdateVehicle from './components/UpdateVehicle';
 import MyBookings from './components/MyBookings';
 
-// Dummy components (add these if they were missing)
 
 const NotFound = () => <h2 style={{ padding: '20px', color: 'red' }}>404 - Page Not Found</h2>;
 
 
 const App = () => {
   return (
-    // 💥 FIX 2: Wrap the Router (and the whole app) with AuthProvider
+ 
     <AuthProvider>
      <ThemeProvider>
        <Router>
@@ -50,7 +49,7 @@ const App = () => {
                     </PrivateRoute>
                 } 
               />
-              {/* NEW: UpdateVehicle route added for redirection */}
+            
               <Route 
                 path="/update-vehicle/:id" 
                 element={

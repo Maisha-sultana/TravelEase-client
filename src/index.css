@@ -1,10 +1,8 @@
 @import "tailwindcss";
 
-/* ====================================
-   0. THEME VARIABLES (NEW)
-==================================== */
+
 :root {
-    /* Light Theme Defaults */
+   
     --background-color: #f4f4f9;
     --card-background: #ffffff;
     --text-color: #333;
@@ -15,18 +13,14 @@
 }
 
 .dark-theme {
-    /* Dark Theme Overrides */
-    --background-color: #1a1a2e; /* Deep blue/purple dark background */
-    --card-background: #272838; /* Slightly lighter card background */
-    --text-color: #f0f0f0; /* Light text */
-    --secondary-text-color: #a0a0a0; /* Lighter secondary text */
+    --background-color: #1a1a2e; 
+    --card-background: #272838;
+    --text-color: #f0f0f0;
+    --secondary-text-color: #a0a0a0; 
     --shadow-color: rgba(0, 0, 0, 0.4);
     --border-color: #444;
 }
 
-/* ====================================
-   1. GLOBAL RESETS
-==================================== */
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -34,56 +28,48 @@ body {
         sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: var(--background-color); /* USE VARIABLE */
-    color: var(--text-color); /* USE VARIABLE */
+    background-color: var(--background-color); 
+    color: var(--text-color);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    transition: background-color 0.5s, color 0.5s; /* Smooth transition */
+    transition: background-color 0.5s, color 0.5s; 
 }
 
-/* Ensure the main root element (e.g., #root or div) spans full height */
 #root {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
 
-/* ====================================
-   CSS Keyframes for Continuous Animation (Float)
-==================================== */
 @keyframes float {
     0%, 100% {
         transform: translateY(0);
     }
     50% {
-        transform: translateY(-15px); /* 15px উপরে উঠবে */
+        transform: translateY(-15px); 
     }
 }
 
 .float-animation {
-    animation: float 4s ease-in-out infinite; /* 4 সেকেন্ড ধরে স্মুথলি চলবে */
+    animation: float 4s ease-in-out infinite; 
 }
-
-/* ====================================
-   2. NAVBAR AND FOOTER STYLES
-==================================== */
 .navbar {
     background-color: #333; /* Dark background */
     padding: 15px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
-.nav-right-actions { /* NEW STYLE */
+.nav-right-actions { 
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-.theme-toggle-btn { /* NEW STYLE */
+.theme-toggle-btn { 
     background: none;
     border: none;
     cursor: pointer;
-    color: white; /* Default color in navbar */
+    color: white; 
     transition: color 0.2s;
     padding: 5px;
 }
@@ -100,7 +86,7 @@ body {
 }
 
 .navbar-logo {
-    color: #F97316; /* Orange color for visibility (TravelEase) */
+    color: #F97316;
     text-decoration: none;
     font-size: 1.8em;
     font-weight: bold;
@@ -125,14 +111,14 @@ body {
 }
 
 .login-btn {
-    background-color: #F97316; /* Orange button color */
+    background-color: #F97316; 
     color: white;
     text-decoration: none;
     padding: 10px 20px;
     border-radius: 6px;
     font-weight: 600;
     transition: background-color 0.2s;
-    display: inline-block; /* Essential for Link component to take padding */
+    display: inline-block; 
 }
 
 .login-btn:hover {
@@ -145,7 +131,7 @@ body {
     color: #ccc;
     padding: 30px 0;
     text-align: center;
-    margin-top: auto; /* Pushes the footer to the bottom */
+    margin-top: auto; 
     border-top: 1px solid #444;
 }
 
@@ -172,12 +158,12 @@ body {
 }
 
 .social-icon:hover {
-    color: #F97316; /* Matches logo highlight */
+    color: #F97316; 
 }
 
 .nav-item-with-icon {
     display: flex; /* Makes the icon and text align horizontally */
-    align-items: center; /* Vertically centers the icon and text */
+    align-items: center; 
 }
 
 .login-btn-with-icon {
@@ -185,34 +171,33 @@ body {
     align-items: center;
 }
 
-/* main-content স্টাইল আপডেট: Hero Section-এর জন্য padding: 0 করা হলো */
 .main-content {
     flex-grow: 1;
     padding: 0; 
 }
-/* ... (Existing styles like .main-content, etc.) ... */
+
 .sort-controls {
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Right corner alignment */
+    justify-content: flex-end; 
     max-width: 1200px;
-    margin: 0 auto 30px; /* Separator from title/grid */
+    margin: 0 auto 30px; 
     padding: 0 20px;
 }
 
 .sort-controls label {
     font-size: 1.1em;
     font-weight: 500;
-    color: var(--text-color); /* USE VARIABLE */
+    color: var(--text-color); 
     margin-right: 15px;
 }
 
 .sort-dropdown {
     padding: 8px 15px;
     border-radius: 6px;
-    border: 1px solid var(--border-color); /* USE VARIABLE */
-    background-color: var(--card-background); /* USE VARIABLE */
-    color: var(--text-color); /* USE VARIABLE */
+    border: 1px solid var(--border-color); 
+    background-color: var(--card-background); 
+    color: var(--text-color);
     font-size: 1em;
     cursor: pointer;
     transition: border-color 0.2s;
@@ -221,20 +206,20 @@ body {
 .sort-dropdown:hover {
     border-color: #F97316;
 }
-/* --- LOGIN PAGE STYLES --- */
+
 .login-page-container {
     max-width: 400px;
     margin: 40px auto;
     padding: 30px;
-    background: var(--card-background); /* USE VARIABLE */
+    background: var(--card-background); 
     border-radius: 10px;
-    box-shadow: 0 4px 12px var(--shadow-color); /* USE VARIABLE */
+    box-shadow: 0 4px 12px var(--shadow-color); 
     text-align: center;
     transition: background 0.5s, box-shadow 0.5s;
 }
 
 .login-title {
-    color: var(--text-color); /* USE VARIABLE */
+    color: var(--text-color); 
     margin-bottom: 30px;
     font-size: 1.8em;
     display: flex;
@@ -243,18 +228,17 @@ body {
 }
 .login-form input[type="email"],
 .login-form input[type="password"] {
-    flex-grow: 1; /* Take up remaining space */
+    flex-grow: 1; 
     padding: 10px;
     border: none;
     outline: none;
     font-size: 1em;
-    background-color: var(--card-background); /* USE VARIABLE */
-    color: var(--text-color); /* USE VARIABLE */
+    background-color: var(--card-background); 
+    color: var(--text-color);
 }
 .login-input-icon {
-    /* আইকন এবং টেক্সটের মধ্যে দূরত্ব তৈরি করা */
     margin-right: 12px; 
-    color: #F97316; /* কমলা রং ব্যবহার করা */
+    color: #F97316; 
     font-size: 1.2em;
 }
 .input-group {
@@ -262,11 +246,11 @@ body {
     align-items: center;
     padding: 8px 12px;
     margin-bottom: 15px;
-    border: 1px solid var(--border-color); /* USE VARIABLE */
+    border: 1px solid var(--border-color); 
     border-radius: 6px;
-    background-color: var(--card-background); /* Use card bg for input field bg */
+    background-color: var(--card-background); 
 }
-/* ---------------------------------- */
+
 
 .submit-btn {
     width: 100%;
@@ -311,27 +295,27 @@ body {
 }
 
 .login-instruction {
-    color: var(--secondary-text-color); /* USE VARIABLE */
+    color: var(--secondary-text-color); 
     margin-bottom: 20px;
 }
 .forget-password-link {
     justify-content: flex-end; 
     margin-bottom: 20px;
 }
-/* --- Utility for dividing social/form login --- */
+
 .divider {
     display: flex;
     align-items: center;
     text-align: center;
     margin: 20px 0;
-    color: var(--secondary-text-color); /* USE VARIABLE */
+    color: var(--secondary-text-color); 
 }
 
 .divider::before,
 .divider::after {
     content: '';
     flex: 1;
-    border-bottom: 1px solid var(--border-color); /* USE VARIABLE */
+    border-bottom: 1px solid var(--border-color); 
 }
 
 .divider:not(:empty)::before {
@@ -363,11 +347,11 @@ body {
 }
 
 .login-instruction {
-    color: var(--secondary-text-color); /* USE VARIABLE */
+    color: var(--secondary-text-color); 
     margin-bottom: 20px;
 }
 .password-feedback {
-    list-style: none; /* Remove default list style */
+    list-style: none;
     padding: 0;
     margin-bottom: 20px;
     text-align: left;
@@ -378,12 +362,11 @@ body {
     padding: 3px 0;
     display: flex;
     align-items: center;
-    color: var(--secondary-text-color); /* Default to secondary text */
+    color: var(--secondary-text-color); 
 }
 
-/* Invalid state (for failing the regex) */
 .password-feedback li.invalid {
-    color: #EF4444; /* Tailwind Red 500 */
+    color: #EF4444; 
 }
 
 .password-feedback li.invalid::before {
@@ -392,9 +375,8 @@ body {
     font-weight: bold;
 }
 
-/* Valid state (for passing the regex) */
 .password-feedback li.valid {
-    color: #10B981; /* Tailwind Green 500 */
+    color: #10B981;
 }
 
 .password-feedback li.valid::before {
@@ -405,25 +387,25 @@ body {
 .sort-controls {
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Right corner alignment */
+    justify-content: flex-end; 
     max-width: 1200px;
-    margin: 0 auto 30px; /* Separator from title/grid */
+    margin: 0 auto 30px; 
     padding: 0 20px;
 }
 
 .sort-controls label {
     font-size: 1.1em;
     font-weight: 500;
-    color: var(--text-color); /* USE VARIABLE */
+    color: var(--text-color); 
     margin-right: 15px;
 }
 
 .sort-dropdown {
     padding: 8px 15px;
     border-radius: 6px;
-    border: 1px solid var(--border-color); /* USE VARIABLE */
-    background-color: var(--card-background); /* USE VARIABLE */
-    color: var(--text-color); /* USE VARIABLE */
+    border: 1px solid var(--border-color); 
+    background-color: var(--card-background);
+    color: var(--text-color); 
     font-size: 1em;
     cursor: pointer;
     transition: border-color 0.2s;
@@ -432,18 +414,12 @@ body {
 .sort-dropdown:hover {
     border-color: #F97316;
 }
-/* src/index.css */
-/* ... (Your existing styles) ... */
 
-/* --- AUTH (USER PROFILE) STYLES --- */
-
-/* 1. Main container for the photo and dropdown */
 .user-profile-menu {
     position: relative; 
     display: inline-block; 
 }
 
-/* 2. User photo wrapper/icon style */
 .user-photo-wrapper {
     width: 36px; 
     height: 36px;
@@ -455,7 +431,6 @@ body {
     border-radius: 50%; 
 }
 
-/* 3. User photo (when available) */
 .user-photo {
     width: 100%; 
     height: 100%;
@@ -463,46 +438,41 @@ body {
     object-fit: cover;
 }
 
-/* 4. User icon (when photoURL is null) */
 .user-icon {
     color: #F97316; 
     font-size: 32px; 
 }
 
-/* 5. Dropdown Menu styles (default: hidden) */
 .dropdown-content {
     display: none; 
     position: absolute;
     right: 0; 
     top: 100%; 
     min-width: 150px;
-    background-color: var(--card-background); /* USE VARIABLE */
-    box-shadow: 0px 8px 16px 0px var(--shadow-color); /* USE VARIABLE */
+    background-color: var(--card-background);
+    box-shadow: 0px 8px 16px 0px var(--shadow-color);
     z-index: 10; 
     padding: 10px;
     border-radius: 5px;
     margin-top: 10px; 
     flex-direction: column; 
     gap: 8px;
-    border: 1px solid var(--border-color); /* USE VARIABLE */
+    border: 1px solid var(--border-color); 
 }
 
-/* 6. Show dropdown on hover over the entire container */
 .user-profile-menu:hover .dropdown-content {
     display: flex; 
 }
 
-/* 7. Style for the name inside the dropdown */
 .user-display-name {
-    color: var(--text-color); /* USE VARIABLE */
+    color: var(--text-color); 
     font-size: 0.9em;
     font-weight: 500;
     padding: 5px 0;
     text-align: center;
-    border-bottom: 1px solid var(--border-color); /* USE VARIABLE */
+    border-bottom: 1px solid var(--border-color); 
 }
 
-/* 8. Style for the Logout Button inside the dropdown */
 .logout-btn-dropdown {
     background-color: #EF4444; 
     color: white;
@@ -522,7 +492,6 @@ body {
     background-color: #DC2626;
 }
 
-/* 9. Login/Register button wrapper */
 .auth-buttons {
     display: flex;
     gap: 10px; 
@@ -543,22 +512,15 @@ body {
     background-color: #555;
 }
 
-
-/* ====================================
-   3. HERO SWIPER STYLES (New)
-==================================== */
-/* Swiper Wrapper (Home কম্পোনেন্টের মূল div) */
 .hero-swiper-wrapper {
     width: 100%;
     flex-grow: 1; 
 }
 
-/* Swiper Component এর উচ্চতা সেট করুন */
 .mySwiper {
-    height: 85vh; /* স্ক্রিনের উচ্চতার 85% */
+    height: 85vh; 
 }
 
-/* প্রতিটা স্লাইডের স্টাইল */
 .hero-slide-item {
     height: 100%;
     width: 100%;
@@ -571,14 +533,13 @@ body {
     text-align: center;
 }
 
-/* ওভারলে */
 .hero-background-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* টেক্সটকে হাইলাইট করতে ডার্ক ওভারলে */
+    background-color: rgba(0, 0, 0, 0.5); 
     z-index: 1; 
 }
 
@@ -590,7 +551,7 @@ body {
 }
 
 .hero-title {
-    font-size: 3.8em; /* আরও বড় সাইজ */
+    font-size: 3.8em; 
     font-weight: 700;
     margin-bottom: 20px;
     color: white;
@@ -606,11 +567,11 @@ body {
 }
 
 .hero-btn {
-    background-color: #F97316; /* কমলা রং */
+    background-color: #F97316; 
     color: white;
     text-decoration: none;
     padding: 15px 35px;
-    border-radius: 50px; /* Pill Shape */
+    border-radius: 50px;
     font-weight: 600;
     font-size: 1.2em;
     transition: background-color 0.3s, transform 0.1s;
@@ -621,21 +582,19 @@ body {
 
 .hero-btn:hover {
     background-color: #e5c539;
-    transform: scale(1.05); /* হোভারে সামান্য বড় হবে */
+    transform: scale(1.05); 
 }
 
-/* Swiper Pagination (ডট) স্টাইল */
 .swiper-pagination-bullet {
-    background-color: white !important; /* ডট সাদা */
+    background-color: white !important; 
     opacity: 0.6 !important;
 }
 
 .swiper-pagination-bullet-active {
-    background-color: #F97316 !important; /* সক্রিয় ডট কমলা */
+    background-color: #F97316 !important; 
     opacity: 1 !important;
 }
 
-/* Swiper Navigation (তীর) স্টাইল */
 .swiper-button-next,
 .swiper-button-prev {
     color: white !important;
@@ -650,12 +609,10 @@ body {
     background-color: rgba(0, 0, 0, 0.6);
 }
 
-/* ====================================
-   4. INFO SECTION (AOS Demo)
-==================================== */
+
 .info-section {
     padding: 60px 20px;
-    background-color: var(--card-background); /* USE VARIABLE */
+    background-color: var(--card-background); 
     text-align: center;
     transition: background-color 0.5s;
 }
@@ -672,8 +629,8 @@ body {
     flex: 1;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 15px var(--shadow-color); /* USE VARIABLE */
-    background-color: var(--background-color); /* USE VARIABLE */
+    box-shadow: 0 4px 15px var(--shadow-color); 
+    background-color: var(--background-color);
     transition: background-color 0.5s, box-shadow 0.5s;
 }
 
@@ -684,22 +641,19 @@ body {
 }
 
 .info-box p {
-    color: var(--secondary-text-color); /* USE VARIABLE */
+    color: var(--secondary-text-color); 
 }
 
-/* ====================================
-   5. LATEST VEHICLES SECTION STYLES
-==================================== */
 .latest-vehicles-section {
     padding: 30px 20px;
-    background-color: var(--background-color); /* USE VARIABLE */
+    background-color: var(--background-color); 
     transition: background-color 0.5s;
 }
 
 .section-title {
     font-size: 2.5em;
     font-weight: 700;
-    color: var(--text-color); /* USE VARIABLE */
+    color: var(--text-color);
     text-align: center;
     margin-bottom: 30px;
    
@@ -710,22 +664,19 @@ body {
     font-size: 1.2em;
     color: #F97316;
 }
-
-/* ✅ RESTORED: Original 3-column grid structure for Home/All Vehicles pages */
 .latest-vehicles-grid {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    /* 3 কলাম গ্রিড */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
 }
 
 .vehicle-card {
-    background-color: var(--card-background); /* USE VARIABLE */
+    background-color: var(--card-background); 
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 15px var(--shadow-color); /* USE VARIABLE */
+    box-shadow: 0 4px 15px var(--shadow-color); 
     transition: transform 0.3s, box-shadow 0.3s, background-color 0.5s;
 }
 
@@ -735,19 +686,19 @@ body {
 }
 
 .card-image-wrapper {
-    height: 200px; /* ফিক্সড হাইট */
+    height: 200px; 
     overflow: hidden;
 }
 
 .card-image {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* ইমেজ যাতে কাট হয়ে হাইট ভরে যায় */
+    object-fit: cover; 
     transition: transform 0.5s;
 }
 
 .vehicle-card:hover .card-image {
-    transform: scale(1.05); /* হোভারে হালকা জুম */
+    transform: scale(1.05); 
 }
 
 .card-content {
@@ -764,7 +715,7 @@ body {
 .card-category,
 .card-location {
     font-size: 0.9em;
-    color: var(--secondary-text-color); /* USE VARIABLE */
+    color: var(--secondary-text-color); 
     margin-bottom: 5px;
     display: flex;
     align-items: center;
@@ -772,7 +723,7 @@ body {
 
 .card-price {
     font-size: 1.1em;
-    color: var(--text-color); /* USE VARIABLE */
+    color: var(--text-color);
     margin: 15px 0;
     font-weight: bold;
 }
@@ -793,9 +744,6 @@ body {
     background-color: #F97316;
 }
 
-/* ====================================
-   NEW: FILTER/SORT CONTROLS STYLES
-==================================== */
 
 .filter-sort-controls-wrapper {
     display: flex;
@@ -816,7 +764,7 @@ body {
 .filter-control-group label {
     font-size: 1.1em;
     font-weight: 500;
-    color: var(--text-color); /* USE VARIABLE */
+    color: var(--text-color); 
     margin-right: 10px;
 }
 
@@ -824,9 +772,9 @@ body {
 .filter-text-input {
     padding: 8px 15px;
     border-radius: 6px;
-    border: 1px solid var(--border-color); /* USE VARIABLE */
-    background-color: var(--card-background); /* USE VARIABLE */
-    color: var(--text-color); /* USE VARIABLE */
+    border: 1px solid var(--border-color); 
+    background-color: var(--card-background);
+    color: var(--text-color); 
     font-size: 1em;
     cursor: pointer;
     transition: border-color 0.2s;
@@ -839,16 +787,16 @@ body {
 }
 
 .filter-text-input::placeholder {
-    color: var(--secondary-text-color); /* USE VARIABLE */
+    color: var(--secondary-text-color); 
     opacity: 0.6;
 }
 
 .sort-dropdown {
     padding: 8px 15px;
     border-radius: 6px;
-    border: 1px solid var(--border-color); /* USE VARIABLE */
-    background-color: var(--card-background); /* USE VARIABLE */
-    color: var(--text-color); /* USE VARIABLE */
+    border: 1px solid var(--border-color); /*  VARIABLE */
+    background-color: var(--card-background);
+    color: var(--text-color); 
     font-size: 1em;
     cursor: pointer;
     transition: border-color 0.2s;
@@ -863,16 +811,13 @@ body {
         justify-content: center; 
     }
 }
-/* ====================================
-   6. ADD VEHICLE FORM STYLES
-==================================== */
 .add-vehicle-container {
     max-width: 600px;
     margin: 40px auto;
     padding: 30px;
-    background: var(--card-background); /* USE VARIABLE */
+    background: var(--card-background); 
     border-radius: 10px;
-    box-shadow: 0 4px 12px var(--shadow-color); /* USE VARIABLE */
+    box-shadow: 0 4px 12px var(--shadow-color); 
     transition: background 0.5s, box-shadow 0.5s;
 }
 
@@ -893,16 +838,15 @@ body {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
-    border: 1px solid var(--border-color); /* USE VARIABLE */
+    border: 1px solid var(--border-color); 
     border-radius: 6px;
     box-sizing: border-box;
     font-size: 1em;
-    /* Added to align text vertically and remove default browser styling */
     -webkit-appearance: none; 
     -moz-appearance: none;
     appearance: none;
-    background-color: var(--card-background); /* USE VARIABLE */
-    color: var(--text-color); /* USE VARIABLE */
+    background-color: var(--card-background); 
+    color: var(--text-color); 
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23F97316'%3E%3Cpath d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd' fill-rule='evenodd'%3E%3C/path%3E%3C/svg%3E"); /* Custom Arrow */
     background-repeat: no-repeat;
     background-position: right 0.7em top 50%;
@@ -920,24 +864,26 @@ body {
     margin-bottom: 15px;
 }
 
-.form-row input, .form-row .form-select { /* Apply flex to both input and select */
+.form-row input, .form-row .form-select { /*  flex to both input and select */
     flex: 1;
     margin-bottom: 0; 
 }
-/* File Upload Custom Style */
+
 .file-input-wrapper {
     margin-bottom: 15px;
 }
-
 .file-label {
-    display: block;
+    
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    
     padding: 12px;
-    background-color: var(--background-color); /* USE VARIABLE */
-    color: var(--text-color); /* USE VARIABLE */
-    border: 2px dashed var(--border-color); /* USE VARIABLE */
+    background-color: var(--background-color);
+    color: var(--text-color); 
+    border: 2px dashed var(--border-color); 
     border-radius: 6px;
     cursor: pointer;
-    text-align: center;
     transition: background-color 0.2s;
 }
 
@@ -946,7 +892,7 @@ body {
 }
 
 .file-input-wrapper input[type="file"] {
-    display: none; /* আসল ইনপুট লুকিয়ে রাখা */
+    display: none; 
 }
 
 /* Submit Button */
@@ -990,21 +936,18 @@ body {
 }
 
 .status-message.error {
-    background-color: #FEE2E2; /* Red */
+    background-color: #FEE2E2; 
     color: #991B1B;
 }
 
 .status-message.info {
-    background-color: #DBEAFE; /* Blue */
+    background-color: #DBEAFE; 
     color: #1E40AF;
 }
 
-/* ====================================
-   7. TOP CATEGORIES SECTION STYLES
-==================================== */
 .categories-section {
     padding: 40px 20px;
-    background-color: var(--card-background); /* USE VARIABLE */
+    background-color: var(--card-background); 
     text-align: center;
     transition: background-color 0.5s;
 }
@@ -1021,8 +964,8 @@ body {
     text-decoration: none;
     padding: 30px;
     border-radius: 12px;
-    background-color: var(--background-color); /* USE VARIABLE */
-    box-shadow: 0 4px 10px var(--shadow-color); /* USE VARIABLE */
+    background-color: var(--background-color);
+    box-shadow: 0 4px 10px var(--shadow-color); 
     transition: transform 0.3s, background-color 0.3s;
     display: flex;
     flex-direction: column;
@@ -1032,7 +975,7 @@ body {
 
 .category-card:hover {
     transform: translateY(-8px);
-    background-color: #F97316; /* Orange hover effect */
+    background-color: #F97316; 
     color: white;
 }
 
@@ -1050,7 +993,7 @@ body {
 .category-name {
     font-size: 1.3em;
     font-weight: 600;
-    color: var(--text-color); /* USE VARIABLE */
+    color: var(--text-color); 
     transition: color 0.3s;
 }
 
@@ -1058,10 +1001,6 @@ body {
     color: white;
 }
 
-
-/* ====================================
-   8. ABOUT SECTION STYLES
-==================================== */
 .about-section {
     padding: 80px 20px;
     background-color: #333; /* Dark background for contrast */
@@ -1123,12 +1062,9 @@ body {
     opacity: 0.8;
 }
 
-/* ====================================
-   9. FEATURED OWNER SECTION STYLES (UPDATED)
-==================================== */
 .featured-owner-section {
     padding: 40px 20px;
-    background-color: var(--card-background); /* USE VARIABLE */
+    background-color: var(--card-background);
     text-align: center;
     transition: background-color 0.5s;
 }
@@ -1139,12 +1075,11 @@ body {
 }
 
 .owner-card {
-    padding: 35px 30px; /* Increased padding */
-    background: var(--background-color); /* USE VARIABLE */
-    /* Removed gradient for theme compatibility */
+    padding: 35px 30px; 
+    background: var(--background-color); 
     border-radius: 20px; /* More rounded */
-    box-shadow: 0 10px 30px var(--shadow-color); /* USE VARIABLE */
-    border: 1px solid var(--border-color); /* USE VARIABLE */
+    box-shadow: 0 10px 30px var(--shadow-color); 
+    border: 1px solid var(--border-color); 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1163,13 +1098,13 @@ body {
     object-fit: cover;
     margin-bottom: 20px;
     border: 6px solid #F97316; /* Thicker border */
-    box-shadow: 0 0 0 8px rgba(249, 115, 22, 0.2); /* Stronger outer shadow */
+    box-shadow: 0 0 0 8px rgba(249, 115, 22, 0.2); 
 }
 
 .owner-name {
     font-size: 1.8em;
     font-weight: 700;
-    color: #F97316; /* Highlight name with brand color */
+    color: #F97316; 
     margin-bottom: 5px;
 }
 
@@ -1185,14 +1120,14 @@ body {
 }
 
 .owner-bio {
-    color: var(--secondary-text-color); /* USE VARIABLE */
+    color: var(--secondary-text-color); 
     font-size: 1em;
     margin-bottom: 15px;
     line-height: 1.5;
 }
 
 .owner-joined {
-    color: var(--secondary-text-color); /* USE VARIABLE */
+    color: var(--secondary-text-color); 
     font-size: 0.9em;
     margin-bottom: 20px;
 }
@@ -1222,14 +1157,13 @@ body {
 }
 
 .details-card {
-    background: var(--card-background); /* USE VARIABLE */
+    background: var(--card-background); 
     border-radius: 12px;
-    box-shadow: 0 8px 20px var(--shadow-color); /* USE VARIABLE */
+    box-shadow: 0 8px 20px var(--shadow-color); 
     overflow: hidden;
     transition: background-color 0.5s, box-shadow 0.5s;
 }
 
-/* Header (Image and Title) */
 .details-header {
     position: relative;
     height: 450px;
@@ -1292,13 +1226,13 @@ body {
 .info-box, .owner-box, .booking-box {
     padding: 20px;
     border-radius: 8px;
-    border: 1px solid var(--border-color); /* USE VARIABLE */
-    background-color: var(--background-color); /* USE VARIABLE */
+    border: 1px solid var(--border-color); 
+    background-color: var(--background-color); 
     transition: background-color 0.5s, border-color 0.5s;
 }
 
 .info-box h2, .details-sidebar h3 {
-    color: var(--text-color); /* USE VARIABLE */
+    color: var(--text-color);
     font-size: 1.5em;
     margin-bottom: 15px;
     border-bottom: 2px solid #F97316;
@@ -1308,13 +1242,13 @@ body {
 
 .description-text {
     line-height: 1.6;
-    color: var(--secondary-text-color); /* USE VARIABLE */
+    color: var(--secondary-text-color); 
     margin-bottom: 20px;
 }
 
 /* Features Section */
 .features-section h2 {
-    color: var(--text-color); /* USE VARIABLE */
+    color: var(--text-color); 
     border-bottom: 2px solid #F97316;
 }
 
@@ -1329,11 +1263,11 @@ body {
     display: flex;
     align-items: center;
     font-size: 1em;
-    color: var(--secondary-text-color); /* USE VARIABLE */
-    background-color: var(--card-background); /* USE VARIABLE */
+    color: var(--secondary-text-color); 
+    background-color: var(--card-background); 
     padding: 10px;
     border-radius: 4px;
-    border: 1px solid var(--border-color); /* USE VARIABLE */
+    border: 1px solid var(--border-color);
 }
 
 /* Owner Info */
@@ -1349,13 +1283,13 @@ body {
 
 .owner-name {
     font-weight: 600;
-    color: var(--text-color); /* USE VARIABLE */
+    color: var(--text-color); 
     margin-bottom: 5px;
 }
 
 .owner-email, .owner-joined {
     font-size: 0.9em;
-    color: var(--secondary-text-color); /* USE VARIABLE */
+    color: var(--secondary-text-color); 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1399,12 +1333,11 @@ body {
 
 .booking-note {
     font-size: 0.8em;
-    color: var(--secondary-text-color); /* USE VARIABLE */
+    color: var(--secondary-text-color); 
     text-align: center;
     margin-top: 15px;
 }
 
-/* Status Message on Details Page */
 .details-sidebar .status-message {
     padding: 10px;
     margin-bottom: 10px;
@@ -1415,24 +1348,17 @@ body {
     box-sizing: border-box; 
 }
 
-
-/* ====================================
-   10. MY VEHICLES PAGE STYLES (NEW - Horizontal Layout & Fixed Alignment)
-==================================== */
-
-/* Wrapper to constrain the status bar width and center it (Alignment Fix Confirmed) */
 .owner-status-wrapper {
-    max-width: 450px; /* Slightly wider to accommodate longer emails */
+    max-width: 450px; 
     margin: 0 auto 30px; 
     padding: 0 20px;
 }
 
-/* Owner Status Info (Email Banner) - Added flex for icon alignment */
 .owner-status-info {
     display: flex; 
     align-items: center;
-    justify-content: center; /* Center content horizontally */
-    gap: 8px; /* Space between icon and text */
+    justify-content: center; 
+    gap: 8px; 
     
     padding: 15px 20px;
     background-color: #DBEAFE; 
@@ -1444,23 +1370,21 @@ body {
     border: 1px solid #93C5FD;
 }
 
-/* ✅ NEW CLASS: Vertical Stack for My Vehicles List */
 .my-vehicles-list {
-    display: block; /* Stack horizontal cards vertically */
+    display: block; 
     padding: 0 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* New Horizontal Card Style for My Vehicles */
 .owner-vehicle-row-card {
-    display: flex; /* Key change: make content horizontal */
-    background-color: var(--card-background); /* USE VARIABLE */
-    border: 1px solid var(--border-color); /* USE VARIABLE */
+    display: flex; 
+    background-color: var(--card-background); 
+    border: 1px solid var(--border-color);
     border-radius: 8px;
-    margin-bottom: 20px; /* Space between cards */
+    margin-bottom: 20px; 
     overflow: hidden; 
-    box-shadow: 0 4px 10px var(--shadow-color); /* USE VARIABLE */
+    box-shadow: 0 4px 10px var(--shadow-color);
     transition: transform 0.3s ease-in-out;
 }
 
@@ -1471,17 +1395,17 @@ body {
 
 /* Image Wrapper (Left Side) */
 .owner-vehicle-row-card .card-image-wrapper {
-    flex: 0 0 40%; /* 40% width, non-shrinkable */
+    flex: 0 0 40%; 
     max-width: 40%;
-    height: 250px; /* Fixed height for consistent image viewing */
+    height: 250px; 
     overflow: hidden;
 }
 
-/* Image (Ensures it fills the space beautifully) */
+
 .card-image-responsive {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Important: covers the area without distortion */
+    object-fit: contain; 
     transition: transform 0.3s ease-in-out;
 }
 
@@ -1489,22 +1413,20 @@ body {
     transform: scale(1.05);
 }
 
-/* Content Area (Right Side) */
 .card-content-side {
-    flex: 1; /* Takes the remaining 60% width */
+    flex: 1; 
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Pushes actions to the bottom */
+    justify-content: space-between; 
 }
 
-/* Title Font adjustment for the smaller content area */
 .card-title-small {
     font-size: 1.5em; 
     font-weight: 700;
     margin-top: 0;
     margin-bottom: 10px;
-    color: var(--text-color); /* USE VARIABLE */
+    color: var(--text-color); 
 }
 
 
@@ -1522,7 +1444,7 @@ body {
 
 /* Status: Available */
 .status-badge.available {
-    background-color: #D1FAE5; /* Green light */
+    background-color: #D1FAE5; 
     color: #065F46; /* Green dark */
 }
 
@@ -1545,7 +1467,7 @@ body {
     text-decoration: none;
     padding: 8px 10px;
     border-radius: 4px;
-    font-size: 0.8em; /* Slightly smaller font for better fit */
+    font-size: 0.8em; 
     font-weight: 600;
     transition: background-color 0.2s, opacity 0.2s;
     display: flex;
@@ -1582,16 +1504,15 @@ body {
     background-color: #DC2626; /* Darker Red */
 }
 
-/* --- RESPONSIVENESS FIXES (Mobile) --- */
 @media (max-width: 768px) {
     .owner-vehicle-row-card {
-        flex-direction: column; /* Stack vertically on mobile */
+        flex-direction: column; 
     }
     
     .owner-vehicle-row-card .card-image-wrapper {
         flex: none;
         max-width: 100%;
-        height: 200px; /* Adjust height for mobile */
+        height: 200px; 
     }
     
     .card-content-side {
@@ -1599,7 +1520,7 @@ body {
     }
     
     .owner-actions-row {
-        flex-direction: column; /* Stack buttons vertically on mobile */
+        flex-direction: column;
     }
 
     .owner-action-btn {
@@ -1607,11 +1528,7 @@ body {
         padding: 10px;
     }
 }
-/* ====================================
-   11. DELETE MODAL & TOAST STYLES (NEW)
-==================================== */
 
-/* Overlay (Covers the whole screen) */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -1622,15 +1539,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Ensure it is on top of everything */
+    z-index: 1000;
 }
 
-/* Modal Container (The actual pop-up box) */
 .modal-container {
-    background: var(--card-background); /* USE VARIABLE */
+    background: var(--card-background); 
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 5px 15px var(--shadow-color); /* USE VARIABLE */
+    box-shadow: 0 5px 15px var(--shadow-color); 
     max-width: 400px;
     width: 90%;
     text-align: center;
@@ -1642,7 +1558,7 @@ body {
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-    color: var(--text-color); /* USE VARIABLE */
+    color: var(--text-color);
 }
 
 .modal-header h3 {
@@ -1657,7 +1573,7 @@ body {
 
 .modal-body-text {
     font-size: 1.1em;
-    color: var(--secondary-text-color); /* USE VARIABLE */
+    color: var(--secondary-text-color); 
     margin-bottom: 30px;
 }
 
@@ -1698,14 +1614,13 @@ body {
     background-color: #DC2626;
 }
 
-/* --- Toast Notification Styles --- */
 .toast-container {
     position: fixed;
     top: 50px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1001;
-    pointer-events: none; /* Allows clicks to pass through */
+    pointer-events: none; 
     animation: slideInDown 0.3s ease-out;
 }
 
@@ -1731,10 +1646,10 @@ body {
 
 /* Toast Color Schemes */
 .toast-content.success {
-    background-color: #10B981; /* Green */
+    background-color: #10B981; 
 }
 .toast-content.error {
-    background-color: #EF4444; /* Red */
+    background-color: #EF4444; 
 }
 .toast-content.info {
     background-color: #3B82F6; /* Blue */
@@ -1764,12 +1679,12 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--card-background); /* USE VARIABLE */
-    border: 1px solid var(--border-color); /* USE VARIABLE */
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color); 
     border-radius: 8px;
     margin-bottom: 20px;
     padding: 20px;
-    box-shadow: 0 2px 8px var(--shadow-color); /* USE VARIABLE */
+    box-shadow: 0 2px 8px var(--shadow-color); 
     transition: box-shadow 0.3s;
 }
 
@@ -1784,7 +1699,7 @@ body {
 .booking-title {
     font-size: 1.5em;
     font-weight: 700;
-    color: var(--text-color); /* USE VARIABLE */
+    color: var(--text-color); 
     margin-bottom: 15px;
     display: flex;
     align-items: center;
@@ -1792,7 +1707,7 @@ body {
 
 .booking-detail, .booking-price {
     font-size: 0.95em;
-    color: var(--secondary-text-color); /* USE VARIABLE */
+    color: var(--secondary-text-color); 
     margin-bottom: 5px;
     display: flex;
     align-items: center;
@@ -1816,20 +1731,20 @@ body {
 }
 
 .booking-status-badge.pending {
-    background-color: #FFFBEB; /* Yellow Light */
-    color: #D97706; /* Yellow Dark */
+    background-color: #FFFBEB; 
+    color: #D97706; 
     border: 1px solid #FCD34D;
 }
 
 .booking-status-badge.confirmed {
-    background-color: #D1FAE5; /* Green Light */
+    background-color: #D1FAE5; 
     color: #065F46; /* Green Dark */
     border: 1px solid #6EE7B7;
 }
 
 .booking-status-badge.cancelled {
-    background-color: #FEE2E2; /* Red Light */
-    color: #991B1B; /* Red Dark */
+    background-color: #FEE2E2; 
+    color: #991B1B; 
     border: 1px solid #FCA5A5;
 }
 
@@ -1858,15 +1773,15 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 80vh;
-    background-color: var(--background-color); /* USE VARIABLE */
+    background-color: var(--background-color); 
     transition: background-color 0.5s;
 }
 
 .not-found-box {
-    background: var(--card-background); /* USE VARIABLE */
+    background: var(--card-background); 
     padding: 50px 40px;
     border-radius: 12px;
-    box-shadow: 0 8px 20px var(--shadow-color); /* USE VARIABLE */
+    box-shadow: 0 8px 20px var(--shadow-color); 
     text-align: center;
     max-width: 500px;
     width: 90%;
@@ -1880,22 +1795,185 @@ body {
 
 .not-found-title {
     font-size: 2.2em;
-    color: var(--text-color); /* USE VARIABLE */
+    color: var(--text-color); 
     margin-bottom: 15px;
     font-weight: 700;
 }
 
 .not-found-text {
     font-size: 1.1em;
-    color: var(--secondary-text-color); /* USE VARIABLE */
+    color: var(--secondary-text-color); 
     margin-bottom: 30px;
 }
 .card-category,
 .card-location,
-.card-timestamp { /* <-- ADDED .card-timestamp to match styling of category/location */
+.card-timestamp { 
     font-size: 0.9em;
-    color: var(--secondary-text-color); /* USE VARIABLE */
+    color: var(--secondary-text-color);
     margin-bottom: 5px;
     display: flex;
     align-items: center;
+}
+
+.menu-toggle-btn {
+    display: none; 
+}
+
+.nav-links {
+    display: flex;
+    
+}
+
+.nav-desktop-actions {
+    display: flex;
+}
+
+.nav-mobile-actions {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 20px;
+    margin-top: 15px;
+    border-top: 1px solid #444; /* Separator */
+}
+
+.theme-toggle-btn-mobile,
+.logout-btn-mobile,
+.login-btn-mobile,
+.register-btn-mobile {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1em;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+    text-decoration: none; /* For links */
+    border: none;
+}
+
+.theme-toggle-btn-mobile {
+    background: none;
+    color: white;
+    border: 1px solid #ddd;
+}
+
+.logout-btn-mobile {
+    background-color: #EF4444; 
+    color: white;
+}
+
+.login-btn-mobile {
+    background-color: #F97316;
+    color: white;
+}
+
+.register-btn-mobile {
+    background-color: #555;
+    color: white;
+}
+
+/* 4. Media Query for Mobile View (NAVBAR) */
+@media (max-width: 768px) {
+    
+    .navbar-container {
+        /* Align logo to the left, and push menu toggle/actions to the right */
+        justify-content: space-between;
+    }
+    
+    /* Show the hamburger button */
+    .menu-toggle-btn {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        z-index: 20;
+    }
+
+    .nav-links,
+    .nav-desktop-actions {
+        display: none;
+    }
+    
+    .nav-links.nav-open {
+        display: flex;
+        flex-direction: column; /* Stack vertically */
+        position: absolute;
+        top: 60px; /* Below the navbar */
+        left: 0;
+        width: 100%;
+        background-color: #333; /* Dark background */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        z-index: 10;
+        padding: 20px 20px 30px; 
+    }
+   
+    .nav-links.nav-open .nav-item {
+        width: 100%;
+        padding: 12px 10px;
+        text-align: left;
+        border-bottom: 1px solid #444;
+        font-size: 1.1em;
+    }
+    .user-profile-menu {
+        display: none;
+    }
+    
+    /* Show mobile actions (buttons) */
+    .nav-links.nav-open .nav-mobile-actions {
+        display: flex;
+    }
+}
+
+@media (max-width: 900px) {
+   
+    .vehicle-details-wrapper {
+        margin: 20px auto;
+        padding: 0 10px;
+    }
+
+    .details-header {
+        height: 300px; 
+    }
+    
+    /* Center text in the header for mobile */
+    .header-content {
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .details-title {
+        font-size: 2em;
+    }
+
+    .details-body {
+        flex-direction: column; 
+        padding: 20px;
+        gap: 20px; /* Reduce gap between stacked elements */
+    }
+    
+    .details-info-panel {
+        flex: none;
+        width: 100%;
+    }
+    
+    .details-sidebar {
+        flex: none;
+        width: 100%;
+        gap: 20px; 
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr; /* Single column for features */
+        gap: 10px;
+    }
+    
+    .feature-item {
+        font-size: 0.9em;
+    }
 }

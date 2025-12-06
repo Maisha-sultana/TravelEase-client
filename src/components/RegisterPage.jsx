@@ -3,13 +3,9 @@ import { useAuth } from '../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaSignInAlt, FaUser, FaEnvelope, FaLock, FaImage } from 'react-icons/fa';
 
-// Password validation regex
 const passwordRegex = {
-    // Must have an Uppercase letter
     uppercase: /(?=.*[A-Z])/, 
-    // Must have a Lowercase letter
     lowercase: /(?=.*[a-z])/, 
-    // Length must be at least 6 characters
     length: /.{6,}/, 
 };
 
@@ -21,7 +17,7 @@ const passwordErrorMessages = {
 };
 
 const RegisterPage = () => {
-    // registerUser এবং googleSignIn ফাংশনগুলো AuthContext থেকে নেওয়া হয়েছে
+   
     const { registerUser, googleSignIn } = useAuth(); 
     const navigate = useNavigate();
 
@@ -30,20 +26,18 @@ const RegisterPage = () => {
     const [photoURL, setPhotoURL] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    
-    // পাসওয়ার্ড ভ্যালিডেশন স্টেট
+ 
     const [passwordValidity, setPasswordValidity] = useState({
-        uppercase: true, // শুরুতে সব true রাখা হয়
+        uppercase: true, 
         lowercase: true,
         length: true
     });
 
-    // পাসওয়ার্ড পরিবর্তনের সাথে সাথে ভ্যালিডেশন চেক করা
+ 
     const handlePasswordChange = (e) => {
         const newPassword = e.target.value;
         setPassword(newPassword);
         
-        // Update validity checks dynamically
         setPasswordValidity({
             uppercase: passwordRegex.uppercase.test(newPassword),
             lowercase: passwordRegex.lowercase.test(newPassword),
@@ -55,23 +49,20 @@ const RegisterPage = () => {
         e.preventDefault();
         setError('');
 
-        // 1. Basic Field Check
         if (!name || !email || !password) {
             setError('Please fill in all required fields (Name, Email, Password).');
             return;
         }
 
-        // 2. Final Validation Check
         if (!passwordValidity.uppercase || !passwordValidity.lowercase || !passwordValidity.length) {
             setError('Please fix the password errors below before submitting.');
             return;
         }
 
         try {
-            // Firebase-এ ইউজার তৈরি করা এবং প্রোফাইল আপডেট করা
+         
             await registerUser(email, password, name, photoURL);
             
-            // Success: Navigate to Home page
             navigate('/'); 
 
         } catch (err) {
@@ -80,7 +71,7 @@ const RegisterPage = () => {
             if (err.code === 'auth/email-already-in-use') {
                 errorMessage = 'This email address is already in use.';
             } else if (err.code === 'auth/weak-password') {
-                // এটি সাধারণত 6 অক্ষরের কম হলে আসে, যা আমরা উপরেই হ্যান্ডেল করছি
+             
                 errorMessage = 'Password is too weak. Please use a stronger one.'; 
             } else {
                 errorMessage = `Registration failed: ${err.message}`;
@@ -94,7 +85,6 @@ const RegisterPage = () => {
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then(() => {
-                // Success: Navigate to Home page
                 navigate('/');
             })
             .catch(error => {
@@ -104,18 +94,17 @@ const RegisterPage = () => {
     };
 
     return (
-        <div className="login-page-container"> {/* Reusing the layout class */}
+        <div className="login-page-container"> 
             <h2 className="login-title">
                 <FaUser style={{ marginRight: '10px' }} />
                 Register for TravelEase
             </h2>
-            
-            {/* Error Message */}
+         
             {error && <p className="status-message error">{error}</p>}
             
             <form onSubmit={handleRegistration} className="login-form">
                 
-                {/* 1. Name Field */}
+                {/* Name Field */}
                 <div className="input-group">
                     <FaUser className="login-input-icon" />
                     <input 
@@ -127,7 +116,7 @@ const RegisterPage = () => {
                     />
                 </div>
 
-                {/* 2. Email Field */}
+                {/*  Email Field */}
                 <div className="input-group">
                     <FaEnvelope className="login-input-icon" />
                     <input 
@@ -139,7 +128,7 @@ const RegisterPage = () => {
                     />
                 </div>
 
-                 {/* 3. Photo URL Field */}
+                 {/* Photo URL Field */}
                 <div className="input-group">
                     <FaImage className="login-input-icon" />
                     <input 
@@ -150,7 +139,7 @@ const RegisterPage = () => {
                     />
                 </div>
 
-                {/* 4. Password Field */}
+                {/*  Password Field */}
                 <div className="input-group">
                     <FaLock className="login-input-icon" />
                     <input 
@@ -175,7 +164,7 @@ const RegisterPage = () => {
                     </li>
                 </ul>
                 
-                {/* 5. Register Button - ভ্যালিডেশন পাস না হলে Disable থাকবে */}
+                
                 <button 
                     type="submit" 
                     className="submit-btn"

@@ -11,7 +11,6 @@ const VehicleDetails = () => {
     const [statusMessage, setStatusMessage] = useState('');
     const navigate = useNavigate();
     
-    // Hardcoded features for attractive display (as vehicle data doesn't include specific features yet)
     const features = [
         { name: 'Air Conditioning', icon: FaCar },
         { name: 'GPS Navigation', icon: FaMapMarkerAlt },
@@ -20,8 +19,6 @@ const VehicleDetails = () => {
         { name: 'Free Cancellation', icon: FaTimesCircle },
     ];
 
-
-    // 1. Fetch Vehicle Data by ID
     useEffect(() => {
         setLoading(true);
         setStatusMessage('');
@@ -43,12 +40,9 @@ const VehicleDetails = () => {
             });
     }, [id]);
 
-
-    // 2. Handle Booking Request
     const handleBookNow = async () => {
         if (!user) {
-            setStatusMessage('❌ You must be logged in to book a vehicle.');
-            // This case should not happen in PrivateRoute, but acts as a safeguard
+            setStatusMessage(' You must be logged in to book a vehicle.');
             return navigate('/login', { state: { from: location } });
         }
         
@@ -62,11 +56,11 @@ const VehicleDetails = () => {
             ownerEmail: vehicle.userEmail,
             pricePerDay: vehicle.pricePerDay,
             bookingDate: new Date().toISOString(),
-            status: 'Pending', // Initial status
+            status: 'Pending', 
         };
 
         try {
-            const response = await fetch('http://localhost:3000/bookings', { // New Booking Endpoint
+            const response = await fetch('http://localhost:3000/bookings', { 
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -78,7 +72,7 @@ const VehicleDetails = () => {
 
             if (result.insertedId) {
                 setStatusMessage('✅ Request successfully sent! The owner will contact you soon.');
-                // Optionally redirect to My Bookings page later
+                
             } else {
                 setStatusMessage('❌ Failed to save booking request to database.');
             }
@@ -109,7 +103,7 @@ const VehicleDetails = () => {
         <div className="vehicle-details-wrapper">
             <div className="details-card">
                 
-                {/* 1. Header and Image */}
+                {/*  Header and Image */}
                 <div className="details-header">
                     <img src={vehicle.coverImage} alt={vehicle.vehicleName} className="details-image" />
                     <div className="header-content">
@@ -120,10 +114,9 @@ const VehicleDetails = () => {
                     </div>
                 </div>
 
-                {/* 2. Main Info and Booking Panel */}
+                {/* Main Info and Booking Panel */}
                 <div className="details-body">
                     
-                    {/* Left Panel: Description and Features */}
                     <div className="details-info-panel">
                         <div className="info-box">
                             <h2>Description</h2>
@@ -144,7 +137,6 @@ const VehicleDetails = () => {
 
                     </div>
 
-                    {/* Right Panel: Owner and Booking */}
                     <div className="details-sidebar">
                         
                         {/* Owner Info */}
@@ -154,7 +146,7 @@ const VehicleDetails = () => {
                             <p className="owner-email">Contact: {vehicle.userEmail}</p>
                           <p className="owner-joined">
                                 <FaCalendarAlt style={{ marginRight: '5px' }} />
-                                {/* ✅ FIX: Use date-fns for formatting */}
+                               
                                 Listed on: {format(new Date(vehicle.createdAt), 'MMM d, yyyy')}
                             </p>
                         </div>

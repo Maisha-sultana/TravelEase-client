@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react'; 
 import { Link } from 'react-router-dom';
-// নতুন আইকন আমদানি করা হলো
 import { FaCar,FaSpinner, FaAngleRight, FaMapMarkerAlt, FaTag, FaBus, FaCarSide, FaMotorcycle, FaTruck, FaQuoteLeft, FaGlobe, FaStar, FaClock } from 'react-icons/fa';
-// Swiper থেকে প্রয়োজনীয় মডিউল এবং কম্পোনেন্ট আমদানি
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { formatDistanceToNowStrict, parseISO } from 'date-fns';
 
-// Swiper এর CSS ফাইল আমদানি
+
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-// ... (slideData - আগের মতোই থাকবে)
 const slideData = [
     {
         id: 1,
@@ -52,14 +50,13 @@ const featuredOwnerData = {
 };
 
 const Home = () => {
-    // 1. নতুন ডেটা স্টেটে সংরক্ষণ
+  
     const [latestVehicles, setLatestVehicles] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // 2. ডেটা Fetch করার লজিক
     useEffect(() => {
         setLoading(true);
-        // আপনার সার্ভার URL পরিবর্তন করুন প্রয়োজন অনুযায়ী
+  
         fetch('http://localhost:3000/latest-vehicles') 
             .then(res => res.json())
             .then(data => {
@@ -75,7 +72,7 @@ const Home = () => {
 
     return (
         <div className="hero-swiper-wrapper">
-            {/* --- HERO SLIDER SECTION (AOS যুক্ত) --- */}
+        
             <Swiper
                 modules={[Autoplay, Pagination, Navigation]}
                 spaceBetween={0} 
@@ -120,7 +117,6 @@ const Home = () => {
                 ))}
             </Swiper>
             
-            {/* --- LATEST VEHICLES SECTION --- */}
             <section className="latest-vehicles-section">
                 <div className="info-container">
                     <h2 className="section-title" data-aos="fade-down">
@@ -136,41 +132,41 @@ const Home = () => {
                     <div className="latest-vehicles-grid">
                         {latestVehicles.map(vehicle => (
                             <div key={vehicle._id} className="vehicle-card" data-aos="fade-up" data-aos-easing="ease-out-back">
-                                {/* ইমেজ */}
+                               
                                 <div className="card-image-wrapper">
-                                    {/* এখানে সঠিক URL থাকা প্রয়োজন */}
+                                  
                                     <img src={vehicle.coverImage} alt={vehicle.vehicleName} className="card-image" />
                                 </div>
                                 
-                                {/* কন্টেন্ট */}
+                              
                                 <div className="card-content">
                                     <h3 className="card-title">{vehicle.vehicleName}</h3>
 
                                     {vehicle.createdAt && (
-                                        <p className="card-timestamp"> {/* Using a new class for styling */}
+                                        <p className="card-timestamp">
                                             <FaClock style={{ marginRight: '5px' }} />
                                             Added {formatDistanceToNowStrict(parseISO(vehicle.createdAt), { addSuffix: true })}
                                         </p>
                                     )}
                                     
-                                    {/* ক্যাটেগরি */}
+                                    
                                     <p className="card-category">
                                         <FaTag style={{ marginRight: '5px' }} />
                                         {vehicle.categories}
                                     </p>
                                     
-                                    {/* লোকেশন */}
+                                
                                     <p className="card-location">
                                         <FaMapMarkerAlt style={{ marginRight: '5px' }} />
                                         {vehicle.location}
                                     </p>
                                     
-                                    {/* মূল্য */}
+                                  
                                     <p className="card-price">
                                         Daily Rent: Tk {vehicle.pricePerDay}
                                     </p>
                                     
-                                    {/* বিস্তারিত লিংক */}
+                                 
                                     <Link to={`/vehicles/${vehicle._id}`} className="card-btn">
                                         View Details
                                         <FaAngleRight style={{ marginLeft: '5px' }} />
@@ -203,8 +199,6 @@ const Home = () => {
                 </div>
             </section>
 
-
-            {/* --- NEW STATIC SECTION 3: FEATURED OWNER (আপডেট করা হয়েছে) --- */}
             <section className="featured-owner-section">
                 <h2 className="section-title " data-aos="fade-down" data-aos-delay="100">
                     Featured Host Spotlight
@@ -227,11 +221,9 @@ const Home = () => {
                 </div>
             </section>
 
-
-            {/* --- ABOUT TRAVEL EASE (Globe Animation যুক্ত করা হয়েছে) --- */}
             <section className="about-section" data-aos="fade-up" data-aos-duration="1200">
                 <div className="about-content-wrapper">
-                    <div className="about-text-content"> {/* <-- লেখা থেকে float-animation সরানো হয়েছে */}
+                    <div className="about-text-content"> 
                         <h2 className="about-title">
                             <FaQuoteLeft style={{ marginRight: '15px', color: '#F97316' }} />
                             About TravelEase
@@ -248,30 +240,13 @@ const Home = () => {
                         </Link>
                     </div>
                     <div className="about-visual" data-aos="zoom-in" data-aos-delay="500">
-                        {/* Globe icon এ float-animation ক্লাস যোগ করা হয়েছে */}
+                   
                         <FaGlobe className="globe-icon float-animation" /> 
                     </div>
                 </div>
             </section>
 
 
-            {/* --- INFO/AOS DEMO SECTION --- */}
-            <section className="info-section">
-                <div className="info-container">
-                    <div className="info-box" data-aos="fade-up">
-                        <h3>Best Price Guarantee</h3>
-                        <p>We ensure you get the most competitive rates for all your rentals.</p>
-                    </div>
-                    <div className="info-box" data-aos="fade-right" data-aos-delay="200">
-                        <h3>24/7 Roadside Assistance</h3>
-                        <p>Our dedicated team is always ready to help you, anytime, anywhere.</p>
-                    </div>
-                    <div className="info-box" data-aos="zoom-in" data-aos-delay="400">
-                        <h3>Verified Vehicles</h3>
-                        <p>Every vehicle on our platform is thoroughly inspected and verified for safety.</p>
-                    </div>
-                </div>
-            </section>
         </div>
     );
 };

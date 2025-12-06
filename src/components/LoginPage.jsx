@@ -1,13 +1,12 @@
-import React, { useState } from 'react'; // useState imported
-import { Navigate, useLocation, Link } from 'react-router-dom'; // Link imported
-import { FaGoogle, FaSignInAlt, FaLock, FaEnvelope } from 'react-icons/fa'; // New icons imported
+import React, { useState } from 'react'; 
+import { Navigate, useLocation, Link } from 'react-router-dom'; 
+import { FaGoogle, FaSignInAlt, FaLock, FaEnvelope } from 'react-icons/fa'; 
 import { useAuth } from '../context/AuthContext'; 
 
 const LoginPage = () => {
-    // Destructure the new emailPasswordSignIn function
+   
     const { user, googleSignIn, emailPasswordSignIn } = useAuth(); 
-    
-    // State for form fields and error message
+ 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -15,10 +14,9 @@ const LoginPage = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
 
-    // --- Email/Password Login Handler ---
     const handleLogin = async (e) => {
         e.preventDefault();
-        setError(''); // Clear previous errors
+        setError(''); 
 
         if (!email || !password) {
             setError('Please enter both email and password.');
@@ -26,11 +24,11 @@ const LoginPage = () => {
         }
 
         try {
-            // Call the new sign-in function
+   
             await emailPasswordSignIn(email, password); 
-            // Successful login leads to redirection via 'if (user)' block below
+           
         } catch (err) {
-            // Handle Firebase error codes
+   
             let errorMessage = 'Login failed. Please check your credentials.';
             
             if (err.code === 'auth/invalid-email') {
@@ -40,17 +38,17 @@ const LoginPage = () => {
             } 
 
             console.error('Login Error:', err);
-            setError(errorMessage); // Show error message in the UI
+            setError(errorMessage); 
         }
     };
-    // ------------------------------------
+ 
 
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then(result => {
                 const loggedUser = result.user;
                 console.log('Signed in user:', loggedUser);
-                // Redirect handled by 'if (user)' check
+             
             })
             .catch(error => {
                 console.error('Google Sign-In Error:', error.message);
@@ -58,7 +56,6 @@ const LoginPage = () => {
             });
     };
 
-    // If the user is already logged in, redirect them away from the login page
     if (user) {
         return <Navigate to={from} replace />;
     }
@@ -70,7 +67,7 @@ const LoginPage = () => {
                 Log In to TravelEase
             </h2>
             
-            {/* Display error message */}
+            {/* error message */}
             {error && <p className="status-message error">{error}</p>}
             
             <form onSubmit={handleLogin} className="login-form">
@@ -80,11 +77,10 @@ const LoginPage = () => {
                     <FaEnvelope className="login-input-icon" />
                     <input 
                         type="email" 
-                        placeholder="Email Address" // <--- PLACEHOLDER ADDED
+                        placeholder="Email Address" 
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                        // --- Autofill আটকানোর জন্য (ঐচ্ছিক) ---
                         autoComplete="off" 
                     />
                 </div>
@@ -94,11 +90,10 @@ const LoginPage = () => {
                     <FaLock className="login-input-icon" />
                     <input 
                         type="password" 
-                        placeholder="Password" // <--- PLACEHOLDER ADDED
+                        placeholder="Password" 
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
-                        // --- Autofill আটকানোর জন্য (ঐচ্ছিক) ---
                         autoComplete="off"
                     />
                 </div>

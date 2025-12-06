@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { FaUpload, FaCar, FaEdit, FaSave, FaSpinner, FaArrowLeft } from 'react-icons/fa';
 
-// IMGBB API Key Reused from AddVehicle.jsx
 const IMGBB_API_KEY = "13cca8a4dab765b31c52f70f5a09a05f"; 
 const IMGBB_UPLOAD_URL = `https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`;
 
@@ -20,7 +19,7 @@ const UpdateVehicle = () => {
     const [statusMessage, setStatusMessage] = useState('');
     const [initialFetchError, setInitialFetchError] = useState('');
 
-    // 1. Fetch Existing Vehicle Data
+
     useEffect(() => {
         if (!id) {
             setInitialFetchError('❌ No vehicle ID provided for update.');
@@ -39,7 +38,7 @@ const UpdateVehicle = () => {
                 // Pre-fill state with fetched data
                 setVehicleData({
                     ...data,
-                    // Ensure pricePerDay is treated as a string for input field value
+                  
                     pricePerDay: data.pricePerDay.toString(), 
                 });
                 setLoading(false);
@@ -52,7 +51,7 @@ const UpdateVehicle = () => {
     }, [id]);
 
 
-    // 2. Handle Form Changes
+    //  Form Changes
     const handleChange = (e) => {
         setVehicleData({
             ...vehicleData,
@@ -60,7 +59,6 @@ const UpdateVehicle = () => {
         });
     };
 
-    // Handle Image Change (If a new file is selected)
     const handleFileChange = (e) => {
         if (e.target.files[0]) {
             if (e.target.files[0].size > 5 * 1024 * 1024) { 
@@ -72,9 +70,8 @@ const UpdateVehicle = () => {
         }
     };
 
-    // 3. ImgBB API দ্বারা ছবি আপলোড (যদি নতুন ফাইল থাকে)
     const uploadImage = async (file) => {
-        if (!file) return vehicleData.coverImage; // No new file, return existing URL
+        if (!file) return vehicleData.coverImage; 
         
         const formData = new FormData();
         formData.append("image", file);
@@ -102,11 +99,10 @@ const UpdateVehicle = () => {
             console.error("❌ ImgBB Upload Failed:", error);
             setUploading(false);
             setStatusMessage(`❌ Image upload failed: ${error.message}.`);
-            return null; // Return null on failure
+            return null; 
         }
     };
 
-    // 4. Form Submission and MongoDB Data Saving Logic
     const handleSubmit = async (e) => {
         e.preventDefault();
         setStatusMessage('Starting update process...');
@@ -116,7 +112,7 @@ const UpdateVehicle = () => {
             return;
         }
 
-        // Upload image only if a new file is selected (imageFile !== null)
+      
         const coverImageUrl = await uploadImage(imageFile);
 
         if (!coverImageUrl) {
@@ -124,19 +120,18 @@ const UpdateVehicle = () => {
             return;
         }
 
-        // Prepare Data for PUT (exclude _id and use the latest coverImage URL)
         const updatedVehicleData = {
             ...vehicleData,
-            pricePerDay: parseFloat(vehicleData.pricePerDay), // Convert back to number
+            pricePerDay: parseFloat(vehicleData.pricePerDay), 
             coverImage: coverImageUrl, 
         };
-        // Important: Remove _id before sending to MongoDB PUT endpoint
+  
         delete updatedVehicleData._id; 
 
         setStatusMessage('Saving updated vehicle data to MongoDB...');
         
         try {
-            // PUT request to the backend
+            // request to the backend
             const response = await fetch(`http://localhost:3000/products/${id}`, { 
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
@@ -148,11 +143,8 @@ const UpdateVehicle = () => {
                  throw new Error(`Server returned status ${response.status}: ${errorText}`);
             }
             
-            // Assuming backend returns success status (200/201)
             setStatusMessage('✅ Vehicle updated successfully!');
-            // After success, reload the page or navigate away if needed
-            // navigate('/my-vehicle'); 
-
+        
         } catch (error) {
             console.error("❌ MongoDB/API Put Failed:", error);
             setStatusMessage(`❌ Update failed: ${error.message}.`);
@@ -167,10 +159,7 @@ const UpdateVehicle = () => {
                    <FaSpinner className="spinner" />
                     Loading vehicle data...
                 </p>
-                {/* CSS for spinner (add to index.css if missing)
-                    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-                    .spinner { animation: spin 1s linear infinite; }
-                */}
+              
             </div>
         );
     }
@@ -187,7 +176,6 @@ const UpdateVehicle = () => {
         );
     }
 
-    // This check should only be needed if the user somehow navigates here without ownership check
     if (user.email !== vehicleData.userEmail) {
         return (
             <div className="add-vehicle-container">
@@ -225,7 +213,7 @@ const UpdateVehicle = () => {
                 </div>
 
 
-                {/* 1. Vehicle Name */}
+                {/*  Vehicle Name */}
                 <input 
                     type="text" 
                     name="vehicleName" 
@@ -235,7 +223,7 @@ const UpdateVehicle = () => {
                     required 
                 />
                 
-                {/* 2. Category & Price */}
+                {/* Category & Price */}
                 <div className="form-row">
                     {/* Category Dropdown */}
                     <select 
@@ -264,7 +252,7 @@ const UpdateVehicle = () => {
                     />
                 </div>
 
-                {/* 3. Location & Availability */}
+                {/*  Location & Availability */}
                 <div className="form-row">
                     <input 
                         type="text" 
@@ -288,7 +276,7 @@ const UpdateVehicle = () => {
                 </div>
 
 
-                {/* 4. Description */}
+                {/*  Description */}
                 <textarea 
                     name="description" 
                     placeholder="Description"
@@ -298,7 +286,7 @@ const UpdateVehicle = () => {
                     required
                 ></textarea>
 
-                {/* 5. Cover Image Upload (Optional for update) */}
+                {/* Cover Image Upload  */}
                 <div className="file-input-wrapper">
                     <label htmlFor="coverImage" className="file-label">
                         <FaUpload style={{ marginRight: '10px' }} />
@@ -313,7 +301,7 @@ const UpdateVehicle = () => {
                     />
                 </div>
                 
-                {/* Status Message & Button (Toast functionality) */}
+            
                 <p className={`status-message ${statusMessage.startsWith('✅') ? 'success' : statusMessage.startsWith('❌') ? 'error' : 'info'}`}>
                     {statusMessage || `Ready to update vehicle: ${vehicleData.vehicleName}`}
                 </p>

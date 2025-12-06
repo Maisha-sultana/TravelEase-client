@@ -39,7 +39,7 @@ const AddVehicle = () => {
         }
     };
 
-    // --- 1. ImgBB API দ্বারা ছবি আপলোড ---
+    
     const uploadImage = async (file) => {
         if (!file) return null;
         
@@ -74,9 +74,7 @@ const AddVehicle = () => {
             return null;
         }
     };
-    // ----------------------------------------------------
-
-    // --- 2. Form Submission and MongoDB Data Saving Logic ---
+   
     const handleSubmit = async (e) => {
         e.preventDefault();
         
@@ -99,7 +97,6 @@ const AddVehicle = () => {
             return;
         }
 
-        // Prepare Data (MongoDB Structure)
         const fullVehicleData = {
             vehicleName: vehicleData.vehicleName || '',
             owner: user.displayName || user.email, 
@@ -108,7 +105,7 @@ const AddVehicle = () => {
             location: vehicleData.location || '',
             availability: vehicleData.availability, 
             description: vehicleData.description || '',
-            coverImage: coverImageUrl, // ImgBB থেকে পাওয়া URL
+            coverImage: coverImageUrl, // ImgBB 
             userEmail: user.email, 
             createdAt: new Date().toISOString(),
             categories: vehicleData.category, 
@@ -131,7 +128,7 @@ const AddVehicle = () => {
             const result = await response.json();
             
             if (result.insertedId) {
-                // ✅ SUCCESS TOAST
+            
                 setStatusMessage('✅ Vehicle added successfully! Data stored in MongoDB.');
                 // Form Reset
                 setVehicleData({ 
@@ -169,7 +166,7 @@ const AddVehicle = () => {
 
 
             <form onSubmit={handleSubmit} className="add-vehicle-form">
-                {/* 1. Vehicle Name */}
+                {/*  Vehicle Name */}
                 <input 
                     type="text" 
                     name="vehicleName" 
@@ -179,7 +176,7 @@ const AddVehicle = () => {
                     required 
                 />
                 
-                {/* 2. Category & Price */}
+                {/* Category & Price */}
                 <div className="form-row">
                     {/* Category Dropdown */}
                     <select 
@@ -208,7 +205,7 @@ const AddVehicle = () => {
                     />
                 </div>
 
-                {/* 3. Location & Availability */}
+                {/*  Location & Availability */}
                 <div className="form-row">
                     <input 
                         type="text" 
@@ -232,7 +229,7 @@ const AddVehicle = () => {
                 </div>
 
 
-                {/* 4. Description */}
+                {/*  Description */}
                 <textarea 
                     name="description" 
                     placeholder="Description"
@@ -242,7 +239,7 @@ const AddVehicle = () => {
                     required
                 ></textarea>
 
-                {/* 5. Cover Image Upload */}
+                {/*  Cover Image Upload */}
                 <div className="file-input-wrapper">
                     <label htmlFor="coverImage" className="file-label">
                         <FaUpload style={{ marginRight: '10px' }} />

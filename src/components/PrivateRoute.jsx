@@ -7,18 +7,14 @@ const PrivateRoute = ({ children }) => {
     const { user, loading } = useAuth();
     const location = useLocation();
 
-    // 1. Loading state: Show a simple loading indicator
     if (loading) {
         return <p className="loading-text" style={{ padding: '40px' }}>Loading authentication status...</p>;
     }
 
-    // 2. User is logged in: Render the children component
     if (user) {
         return children;
     }
 
-    // 3. User is NOT logged in: Redirect to the login page
-    // We pass the current location so the user can be redirected back after login.
     return (
         <div className="login-page-container">
             <h2 className="login-title" style={{color: '#EF4444'}}>

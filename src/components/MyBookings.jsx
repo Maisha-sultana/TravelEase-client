@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { FaCar, FaUser, FaTag, FaCalendarAlt, FaClock, FaCheckCircle, FaTimesCircle, FaHourglassHalf, FaInfoCircle, FaSpinner } from 'react-icons/fa';
 import { format } from 'date-fns';
-// Component to display individual booking cards
 const BookingCard = ({ booking }) => {
     
     const getStatusClass = (status) => {
@@ -73,7 +72,6 @@ const MyBookings = () => {
     const [loading, setLoading] = useState(true);
     const [statusMessage, setStatusMessage] = useState('');
 
-    // Function to fetch bookings by renter email
     const fetchMyBookings = async (email) => {
         if (!email) {
             setStatusMessage('❌ User email not available to fetch bookings.');
@@ -85,7 +83,7 @@ const MyBookings = () => {
         setStatusMessage('Loading your booking requests...');
         
         try {
-            // New endpoint targeting bookings by email
+        
             const response = await fetch(`http://localhost:3000/my-bookings/${email}`); 
             
             if (!response.ok) {

@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-content">
-        {/* Copyright Text */}
+      
         <p className="copyright-text">
           &copy; {currentYear} **{websiteName}**. All Rights Reserved.
         </p>

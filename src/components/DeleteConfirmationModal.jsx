@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaTrash, FaCheckCircle, FaTimesCircle, FaExclamationTriangle } from 'react-icons/fa';
-import { motion, AnimatePresence } from 'framer-motion'; // <-- NEW IMPORT
+import { motion, AnimatePresence } from 'framer-motion'; 
 
 const DeleteConfirmationModal = ({ 
     isOpen, 
@@ -10,7 +10,7 @@ const DeleteConfirmationModal = ({
     statusType, 
     message 
 }) => {
-    // --- Modal Content for CONFIRMATION Mode ---
+   
     const confirmationContent = (
         <>
             <div className="modal-header confirm-header">
@@ -38,7 +38,7 @@ const DeleteConfirmationModal = ({
         </>
     );
 
-    // --- Modal Content for STATUS (Toast) Mode ---
+   
     const getStatusIcon = () => {
         switch (statusType) {
             case 'success':
@@ -57,12 +57,11 @@ const DeleteConfirmationModal = ({
             <p className="toast-message">{message}</p>
         </div>
     );
-    
-    // RENDER: Main Modal Structure using Framer Motion
+   
     return (
         <AnimatePresence>
             {isOpen && (
-                // Motion for Overlay (fades in)
+               
                 <motion.div 
                     className="modal-overlay" 
                     onClick={mode === 'status' ? onClose : undefined}
@@ -71,7 +70,7 @@ const DeleteConfirmationModal = ({
                     exit={{ opacity: 0 }}
                 >
                     {mode === 'confirm' ? (
-                        // Motion for Modal Container (pops in with spring effect)
+                       
                         <motion.div 
                             className="modal-container" 
                             onClick={(e) => e.stopPropagation()} 
@@ -83,7 +82,7 @@ const DeleteConfirmationModal = ({
                             {confirmationContent}
                         </motion.div>
                     ) : (
-                        // Motion for Toast Container (slides down)
+                    
                         <motion.div 
                             className="toast-container"
                             initial={{ y: -50, opacity: 0 }}
