@@ -57,7 +57,7 @@ const Home = () => {
     useEffect(() => {
         setLoading(true);
   
-        fetch('http://localhost:3000/latest-vehicles') 
+        fetch('https://travel-ease-server-five.vercel.app/latest-vehicles') 
             .then(res => res.json())
             .then(data => {
                 setLatestVehicles(data);

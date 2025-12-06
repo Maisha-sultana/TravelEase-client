@@ -22,7 +22,7 @@ const VehicleDetails = () => {
     useEffect(() => {
         setLoading(true);
         setStatusMessage('');
-        fetch(`http://localhost:3000/products/${id}`)
+        fetch(`https://travel-ease-server-five.vercel.app/products/${id}`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error('Vehicle not found or server error');
@@ -60,7 +60,7 @@ const VehicleDetails = () => {
         };
 
         try {
-            const response = await fetch('http://localhost:3000/bookings', { 
+            const response = await fetch('https://travel-ease-server-five.vercel.app/bookings', { 
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

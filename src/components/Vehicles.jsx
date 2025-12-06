@@ -50,7 +50,7 @@ const VehiclesPage = () => {
         setLoading(true);
         setError(null);
 
-        fetch('http://localhost:3000/products') 
+        fetch('https://travel-ease-server-five.vercel.app/products') 
             .then(res => {
                 if (!res.ok) {
                     throw new Error('Network response was not ok');

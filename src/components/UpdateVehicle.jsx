@@ -27,7 +27,7 @@ const UpdateVehicle = () => {
             return;
         }
 
-        fetch(`http://localhost:3000/products/${id}`)
+        fetch(`https://travel-ease-server-five.vercel.app/products/${id}`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error('Vehicle data not found or access denied');
@@ -132,7 +132,7 @@ const UpdateVehicle = () => {
         
         try {
             // request to the backend
-            const response = await fetch(`http://localhost:3000/products/${id}`, { 
+            const response = await fetch(`https://travel-ease-server-five.vercel.app/products/${id}`, { 
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(updatedVehicleData),

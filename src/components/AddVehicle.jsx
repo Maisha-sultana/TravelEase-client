@@ -114,7 +114,7 @@ const AddVehicle = () => {
         setStatusMessage('Saving vehicle data to MongoDB...');
         
         try {
-            const response = await fetch('http://localhost:3000/products', { 
+            const response = await fetch('https://travel-ease-server-five.vercel.app/products', { 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(fullVehicleData),

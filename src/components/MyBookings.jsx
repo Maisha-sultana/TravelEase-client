@@ -84,7 +84,7 @@ const MyBookings = () => {
         
         try {
         
-            const response = await fetch(`http://localhost:3000/my-bookings/${email}`); 
+            const response = await fetch(`https://travel-ease-server-five.vercel.app/my-bookings/${email}`); 
             
             if (!response.ok) {
                 throw new Error('Failed to fetch data from server');

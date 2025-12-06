@@ -90,7 +90,7 @@ const MyVehicles = () => {
         setFetchStatusMessage('Loading your vehicles...');
         
         try {
-            const response = await fetch(`http://localhost:3000/my-products/${email}`); 
+            const response = await fetch(`https://travel-ease-server-five.vercel.app/my-products/${email}`); 
             
             if (!response.ok) {
                 throw new Error('Failed to fetch data from server');
@@ -140,7 +140,7 @@ const MyVehicles = () => {
         showToast('info', 'Deleting vehicle...'); 
         
         try {
-            const response = await fetch(`http://localhost:3000/products/${deleteId}`, {
+            const response = await fetch(`https://travel-ease-server-five.vercel.app/products/${deleteId}`, {
                 method: 'DELETE',
             });
 
