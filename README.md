@@ -1,16 +1,38 @@
-# React + Vite
+#  TravelEase - Modern Travel Management Client
+TravelEase is a fully functional, user-centric travel management platform. It allows users to explore breathtaking destinations, book travel packages, and manage their trips effortlessly. The application focuses on delivering a seamless and secure experience for travelers worldwide.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+##  Live Project
+Experience the platform live: https://travelease-43b9c.web.app/
 
-Currently, two official plugins are available:
+## Core Features
+- **Dynamic Package Browsing:** Explore various travel spots with high-quality images and detailed descriptions.
+- **User Authentication:** Secure Sign-up and Login using **Firebase** (Google and Email/Password).
+- **Personalized Dashboard:** Users can view their booked trips and manage their profile.
+- **Admin Features:** Admins can add new destinations, update pricing, or delete packages.
+- **Interactive UI:** Fully responsive design using **Tailwind CSS** for all device sizes.
+- **Real-time Notifications:** SweetAlert2 integration for booking confirmations and errors.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+##  Technologies Used
+- **Library:** React.js (Vite)
+- **Styling:** Tailwind CSS & DaisyUI
+- **Authentication:** Firebase Auth
+- **Routing:** React Router DOM
+- **Data Fetching:** Axios & TanStack Query (React Query)
+- **Icons:** React Icons / Lucide React
 
-## React Compiler
+##  Dependencies
+To ensure a smooth experience, the project uses the following key dependencies:
+- `firebase`: For authentication and hosting.
+- `axios`: For API requests to the server.
+- `react-router-dom`: For seamless page navigation.
+- `sweetalert2`: For beautiful popup alerts.
+- `react-hook-form`: For efficient form handling.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+##  How to Run Locally
+**Clone the Repository:**
+ 
+   git clone [https://github.com/Maisha-sultana/TravelEase-client.git](https://github.com/Maisha-sultana/TravelEase-client.git)
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. **Clone the Repository:**
+   ```bash
+   git clone [https://github.com/Maisha-sultana/TravelEase-client.git](https://github.com/Maisha-sultana/TravelEase-client.git)
