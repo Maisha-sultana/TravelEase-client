@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; 
 import { Navigate, useLocation, Link } from 'react-router-dom'; 
-import { FaGoogle, FaSignInAlt, FaLock, FaEnvelope } from 'react-icons/fa'; 
+import { FaGoogle, FaSignInAlt, FaLock, FaEnvelope, FaUserShield, FaUser } from 'react-icons/fa'; 
 import { useAuth } from '../context/AuthContext'; 
 
 const LoginPage = () => {
@@ -14,6 +14,16 @@ const LoginPage = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
 
+    const handleDemoLogin = (role) => {
+        if (role === 'admin') {
+            setEmail('admin@travelease.com');
+            setPassword('Admin1234');
+        } else {
+            setEmail('user@demo.com');
+            setPassword('User1234');
+        }
+    };
+
     const handleLogin = async (e) => {
         e.preventDefault();
         setError(''); 
@@ -24,11 +34,8 @@ const LoginPage = () => {
         }
 
         try {
-   
             await emailPasswordSignIn(email, password); 
-           
         } catch (err) {
-   
             let errorMessage = 'Login failed. Please check your credentials.';
             
             if (err.code === 'auth/invalid-email') {
@@ -48,7 +55,6 @@ const LoginPage = () => {
             .then(result => {
                 const loggedUser = result.user;
                 console.log('Signed in user:', loggedUser);
-             
             })
             .catch(error => {
                 console.error('Google Sign-In Error:', error.message);
@@ -69,6 +75,24 @@ const LoginPage = () => {
             
             {/* error message */}
             {error && <p className="status-message error">{error}</p>}
+
+            {/* Demo Login Buttons Section */}
+            <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', justifyContent: 'center' }}>
+                <button 
+                    onClick={() => handleDemoLogin('admin')} 
+                    className="submit-btn" 
+                    style={{ backgroundColor: '#333', fontSize: '0.8em', padding: '8px' }}
+                >
+                    <FaUserShield style={{ marginRight: '5px' }} /> Demo Admin
+                </button>
+                <button 
+                    onClick={() => handleDemoLogin('user')} 
+                    className="submit-btn" 
+                    style={{ backgroundColor: '#555', fontSize: '0.8em', padding: '8px' }}
+                >
+                    <FaUser style={{ marginRight: '5px' }} /> Demo User
+                </button>
+            </div>
             
             <form onSubmit={handleLogin} className="login-form">
                 
@@ -100,7 +124,7 @@ const LoginPage = () => {
                 
                 {/* Forget Password Link */}
                 <div className="flex forget-password-link">
-                    <Link to="/reset-password" className="text-sm text-gray-500 hover:text-orange-500 transition duration-150">
+                    <Link to="/reset-password" style={{ fontSize: '0.85em', color: '#666' }}>
                         Forget Password?
                     </Link>
                 </div>

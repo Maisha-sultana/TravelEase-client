@@ -122,6 +122,16 @@ const VehicleDetails = () => {
                             <h2>Description</h2>
                             <p className="description-text">{vehicle.description || "A wonderful vehicle ready for your next adventure. Contact the owner for more details."}</p>
                         </div>
+
+                        <div className="info-box" style={{ marginTop: '20px' }}>
+        <h2>Rules & Key Information</h2>
+        <ul style={{ listStyle: 'none', padding: 0, color: 'var(--secondary-text-color)' }}>
+            <li style={{ marginBottom: '8px' }}>• Valid driving license is mandatory.</li>
+            <li style={{ marginBottom: '8px' }}>• Fuel cost is excluded from the daily rent.</li>
+            <li style={{ marginBottom: '8px' }}>• Maximum 4-5 passengers allowed for this category.</li>
+            <li style={{ marginBottom: '8px' }}>• 24/7 roadside assistance included.</li>
+        </ul>
+    </div>
                         
                         <div className="info-box features-section">
                             <h2>Key Features</h2>

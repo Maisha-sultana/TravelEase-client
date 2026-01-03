@@ -1,16 +1,9 @@
 import React, { useState } from 'react'; 
 import { Link } from 'react-router-dom';
 import { 
-    FaHome, 
-    FaCar, 
-    FaPlusCircle, 
-    FaSignInAlt, 
-    FaUserCircle, 
-    FaSignOutAlt, 
-    FaSun, 
-    FaMoon, 
-    FaBars, 
-    FaCalendarAlt 
+    FaHome, FaCar, FaSignInAlt, FaUserCircle, 
+    FaSignOutAlt, FaSun, FaMoon, FaBars, FaChartPie,
+    FaInfoCircle, FaEnvelope , FaShieldAlt, FaUserPlus
 } from 'react-icons/fa'; 
 import { useAuth } from '../context/AuthContext'; 
 import { useTheme } from '../context/ThemeContext'; 
@@ -20,121 +13,92 @@ const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   
-  // Toggle function for the mobile menu
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-  
+  const toggleMenu = () => setMenuOpen(!menuOpen);
 
   const navLinks = [
     { name: 'Home', path: '/', icon: FaHome },
     { name: 'All Vehicles', path: '/vehicles', icon: FaCar },
-    { name: 'Add Vehicle', path: '/add-vehicle', icon: FaPlusCircle, protected: true }, 
- 
-    { name: 'My Vehicles', path: '/my-vehicle', icon: FaCar, protected: true }, 
-    { name: 'My Bookings', path: '/my-booking', icon: FaCalendarAlt, protected: true }, 
+    { name: 'About', path: '/about', icon: FaInfoCircle }, 
+    { name: 'Contact', path: '/contact', icon: FaEnvelope }, 
+    { name: 'Privacy', path: '/privacy', icon: FaShieldAlt }, 
   ];
-  
-  const handleLogOut = () => {
-    logOut().catch((error) => console.error('Logout Error:', error));
-  };
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
-   
-        <Link to="/" className="navbar-logo">
-          TravelEase
-        </Link>
+        <Link to="/" className="navbar-logo">TravelEase</Link>
         
-        {/* Mobile Menu Button (Hamburger) */}
         <button className="menu-toggle-btn" onClick={toggleMenu}>
             <FaBars size={20} />
         </button>
 
         <div className={`nav-links ${menuOpen ? 'nav-open' : ''}`}>
           {navLinks.map((link) => (
-            (user || !link.protected) && (
-              <Link 
-                key={link.name} 
-                to={link.path} 
-                className="nav-item nav-item-with-icon"
-                onClick={() => setMenuOpen(false)} // Close menu on link click
-              >
-                <link.icon style={{ marginRight: '5px' }} />
-                {link.name}
-              </Link>
-            )
+            <Link 
+              key={link.name} 
+              to={link.path} 
+              className="nav-item nav-item-with-icon"
+              onClick={() => setMenuOpen(false)}
+            >
+              <link.icon style={{ marginRight: '5px' }} />
+              {link.name}
+            </Link>
           ))}
         
-        <div className="nav-mobile-actions">
-             <button onClick={toggleTheme} className="theme-toggle-btn-mobile">
-                {theme === 'light' ? 
-                    <><FaMoon style={{ marginRight: '5px' }} /> Switch to Dark Mode</> : 
-                    <><FaSun style={{ marginRight: '5px', color: '#F97316' }} /> Switch to Light Mode</>
-                }
-            </button>
-            
+          <div className="nav-mobile-actions">
             {user ? (
-                <button onClick={handleLogOut} className="logout-btn-mobile">
-                    <FaSignOutAlt style={{ marginRight: '5px' }} />
-                    LogOut ({user.displayName || user.email})
-                </button>
-            ) : (
                 <>
-                    <Link to="/login" className="login-btn-mobile" onClick={() => setMenuOpen(false)}>
-                        <FaSignInAlt style={{ marginRight: '5px' }} />
-                        Login
+                    <Link to="/dashboard" className="login-btn-mobile" onClick={() => setMenuOpen(false)}>
+                        <FaChartPie style={{ marginRight: '5px' }} /> Dashboard
                     </Link>
-                    <Link to="/register" className="register-btn-mobile" onClick={() => setMenuOpen(false)}>
-                        Register
-                    </Link>
+                    <button onClick={logOut} className="logout-btn-mobile">
+                        <FaSignOutAlt style={{ marginRight: '5px' }} /> LogOut
+                    </button>
                 </>
+            ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <Link to="/login" className="login-btn-mobile" onClick={() => setMenuOpen(false)}>
+                        <FaSignInAlt style={{ marginRight: '5px' }} /> Login
+                    </Link>
+                  
+                    <Link to="/register" className="register-btn-mobile" style={{ textAlign: 'center', color: 'white', textDecoration: 'none' }} onClick={() => setMenuOpen(false)}>
+                        <FaUserPlus style={{ marginRight: '5px' }} /> Register
+                    </Link>
+                </div>
             )}
-        </div>
+          </div>
         </div>
 
-        {/* Desktop Right Actions (Hidden on mobile) */}
         <div className="nav-right-actions nav-desktop-actions"> 
-  
             <button onClick={toggleTheme} className="theme-toggle-btn">
-                {theme === 'light' ? 
-                    <FaMoon size={20} title="Switch to Dark Mode" /> : 
-                    <FaSun size={20} title="Switch to Light Mode" style={{ color: '#F97316' }} />
-                }
+                {theme === 'light' ? <FaMoon size={20} /> : <FaSun size={20} style={{ color: '#F97316' }} />}
             </button>
             
             {user ? (
             <div className="user-profile-menu"> 
-              <div 
-                className="user-photo-wrapper"
-              >
-                {user.photoURL ? (
-                  <img src={user.photoURL} alt="User" className="user-photo" />
-                ) : (
-                  <FaUserCircle className="user-icon" size={36} />
-                )}
+              <div className="user-photo-wrapper">
+                {user.photoURL ? <img src={user.photoURL} alt="User" className="user-photo" /> : <FaUserCircle size={36} />}
               </div>
            
               <div className="dropdown-content">
-                <span className="user-display-name">
-                    {user.displayName || user.email} 
-                </span>
-                <button onClick={handleLogOut} className="logout-btn-dropdown">
-                    <FaSignOutAlt style={{ marginRight: '5px' }} />
-                    LogOut
+                <span className="user-display-name">{user.displayName || user.email}</span>
+                <Link to="/dashboard" className="nav-item" style={{ color: 'var(--text-color)', padding: '10px', display: 'flex', alignItems: 'center' }}>
+                    <FaChartPie style={{ marginRight: '10px' }} /> Dashboard
+                </Link>
+                <button onClick={logOut} className="logout-btn-dropdown">
+                    <FaSignOutAlt style={{ marginRight: '5px' }} /> LogOut
                 </button>
               </div>
             </div>
           ) : (
-            <div className="auth-buttons">
-              <Link to="/login" className="login-btn login-btn-with-icon">
-                <FaSignInAlt style={{ marginRight: '5px' }} />
-                Login
-              </Link>
-              <Link to="/register" className="register-btn">
-                Register
-              </Link>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                <Link to="/login" className="login-btn login-btn-with-icon">
+                    <FaSignInAlt style={{ marginRight: '5px' }} /> Login
+                </Link>
+           
+                <Link to="/register" className="nav-item" style={{ display: 'flex', textDecoration: 'none', fontWeight: '600' }}>
+                    <FaUserPlus className='mr-2 mt-1'/> Register
+                </Link>
             </div>
           )}
         </div>
